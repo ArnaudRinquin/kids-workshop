@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <!-- Background -->
+  <rect x="0" y="0" width="200" height="150" fill="#FFF" />
+  <!-- Building Blocks -->
+  <rect x="40" y="70" width="40" height="40" fill="#FF5E58" />
+  <rect x="100" y="70" width="40" height="40" fill="#FFA82B" />
+  <rect x="160" y="70" width="40" height="40" fill="#6AC06A" />
+  <!-- Paintbrush Handle -->
+  <rect x="75" y="20" width="20" height="50" fill="#FFD000" />
+  <!-- Paintbrush Bristles -->
+  <rect x="80" y="10" width="10" height="10" fill="#D95C5C" />
+  <!-- Paintbrush Splash -->
+  <circle cx="85" cy="5" r="5" fill="#00A9E0" />
+  <!-- More Building Blocks -->
+  <rect x="25" y="40" width="40" height="40" fill="#00A9E0" />
+  <rect x="135" y="40" width="40" height="40" fill="#FF5E58" />
+</svg>
