@@ -1,13 +1,26 @@
+import { CardGrid } from "@/components/CardGrid";
+import { PageContainer } from "@/components/PageContainer";
+import PageTitle from "@/components/PageTitle";
+import { Progress } from "@/components/Progress";
+import { KidLevelChip } from "@/components/kids/LevelChip";
+import { WorkshopCard } from "@/components/workshops/Card";
 import {
   useAvailableWorkshopsForKid,
   useKid,
-  useMarkSessionAsSuccessfull,
+  // useMarkSessionAsSuccessfull,
   useSessionForKidAndWorkshop,
-  useStartSession,
+  // useStartSession,
   useSuccessfullSessionsForKid,
   useWorkshop,
 } from "@/dataStore";
+import { Kid, Session, Workshop } from "@/types";
 import { Link, useParams } from "react-router-dom";
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-2xl font-semibold my-2 text-gray-900">{children}</h2>
+  );
+}
 
 export default function KidPage() {
   const params = useParams<{ kidId: string }>();
@@ -27,98 +40,89 @@ export default function KidPage() {
   }
 
   return (
-    <main className="">
-      <h1>Kid #{kid.name}</h1>
-      <img src={kid.photoUrl} alt={kid.name} />
+    <PageContainer>
+      <PageTitle backLink="/kids">
+        <>
+          {kid.name}
+          <KidLevelChip level={kid.level} />
+        </>
+      </PageTitle>
 
-      <h2>Available workshops</h2>
-      {availableWorkshops.map((workshop) => (
-        <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
-      ))}
+      <SectionTitle>Available workshops</SectionTitle>
+      <CardGrid>
+        {availableWorkshops.map((workshop) => (
+          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
+        ))}
+      </CardGrid>
 
-      <h2>Successfull sessions</h2>
-      {successfullSessions.map((session) => (
-        <Session key={session.id} session={session} />
-      ))}
-
-      <Link to="/kids">Back</Link>
-      <Link to="/">Home</Link>
-    </main>
+      <SectionTitle>Successfull sessions</SectionTitle>
+      <CardGrid>
+        {successfullSessions.map((session) => (
+          <SessionCard key={session.id} session={session} />
+        ))}
+      </CardGrid>
+    </PageContainer>
   );
 }
 
-function Session({
-  session,
-}: {
-  session: {
-    id: string;
-    workshopId: string;
-    kidId: string;
-    triedAt: number;
-    succededAt?: number | null;
-  };
-}) {
+function SessionCard({ session }: { session: Session }) {
   const workshop = useWorkshop({ workshopId: session.workshopId });
+  const kid = useKid({ kidId: session.kidId });
   if (!workshop) {
     return <div>Workshop not found 🚨</div>;
   }
-  return (
-    <div>
-      <h3>Session {workshop.name}</h3>
-      <img src={workshop.photoUrl} alt={workshop.name} />
-      <p>Tried: {new Date(session.triedAt).toISOString()}</p>
-      <p>
-        Succeded:{" "}
-        {session.succededAt ? new Date(session.succededAt).toISOString() : "-"}
-      </p>
-    </div>
-  );
+  if (!kid) {
+    return <div>Workshop not found 🚨</div>;
+  }
+  return <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />;
 }
 
-function AvailableWorkshop({ kid, workshop }: { kid: any; workshop: any }) {
+function AvailableWorkshop({
+  kid,
+  workshop,
+}: {
+  kid: Kid;
+  workshop: Workshop;
+}) {
   const existingSession = useSessionForKidAndWorkshop({
     kidId: kid.id,
     workshopId: workshop.id,
   });
-  const startSession = useStartSession({
-    kidId: kid.id,
-    workshopId: workshop.id,
-  });
-  const markSessionAsSucceded = useMarkSessionAsSuccessfull({
-    kidId: kid.id,
-    workshopId: workshop.id,
-  });
+
+  const steps = [
+    {
+      children: "✨",
+      onClick: () => {
+        console.log("reset");
+      },
+      key: "1",
+    },
+    {
+      children: "⏳",
+      onClick: () => {
+        console.log("start");
+      },
+      key: "2",
+    },
+    {
+      children: <span className="text-green-300 text-xl">✓</span>,
+      onClick: () => {
+        console.log("finish");
+      },
+      key: "3",
+    },
+  ];
 
   return (
-    <div>
-      <Link key={workshop.id} to={`/workshops/${workshop.id}`}>
-        {workshop.name}
-        <img src={workshop.photoUrl} alt={workshop.name} />
-      </Link>
-      {existingSession ? (
-        "Already tried"
-      ) : (
-        <button
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            startSession();
-            window.location.pathname = "/";
-          }}
-        >
-          Start
-        </button>
-      )}
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          markSessionAsSucceded();
-          window.location.pathname = "/";
-        }}
-      >
-        Succeded
-      </button>
-    </div>
+    <Link key={workshop.id} to={`/workshops/${workshop.id}`}>
+      <WorkshopCard {...workshop}>
+        <Progress
+          steps={steps}
+          currentStep={
+            existingSession?.triedAt ? (existingSession.succededAt ? 2 : 1) : 0
+          }
+        />
+      </WorkshopCard>
+    </Link>
   );
 }

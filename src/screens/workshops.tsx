@@ -1,3 +1,5 @@
+import { CardGrid } from "@/components/CardGrid";
+import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
 import { WorkshopCard } from "@/components/workshops/Card";
 import { useWorkshops } from "@/dataStore";
@@ -5,9 +7,9 @@ import { useWorkshops } from "@/dataStore";
 export default function Workshops() {
   const workshops = useWorkshops();
   return (
-    <main className="container mx-auto">
+    <PageContainer>
       <PageTitle backLink="/">Workshops</PageTitle>
-      <div className="flex items-center justify-center gap-x-12">
+      <CardGrid>
         {workshops.map((workshop) => (
           <WorkshopCard
             key={workshop.id}
@@ -17,7 +19,7 @@ export default function Workshops() {
             photoUrl={workshop.photoUrl}
           />
         ))}
-      </div>
-    </main>
+      </CardGrid>
+    </PageContainer>
   );
 }

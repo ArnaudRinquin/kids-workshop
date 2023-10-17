@@ -1,3 +1,5 @@
+import { CardGrid } from "@/components/CardGrid";
+import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
 import { KidsCard } from "@/components/kids/Card";
 import { useKids } from "@/dataStore";
@@ -5,9 +7,9 @@ import { useKids } from "@/dataStore";
 export default function Kids() {
   const kids = useKids();
   return (
-    <main className="container mx-auto">
+    <PageContainer>
       <PageTitle backLink="/">Kids</PageTitle>
-      <div className="flex items-center justify-center gap-x-12">
+      <CardGrid>
         {kids.map((kid) => (
           <KidsCard
             key={kid.id}
@@ -17,7 +19,7 @@ export default function Kids() {
             photoUrl={kid.photoUrl}
           />
         ))}
-      </div>
-    </main>
+      </CardGrid>
+    </PageContainer>
   );
 }
