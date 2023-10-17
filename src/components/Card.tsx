@@ -1,35 +1,19 @@
-// import { Link } from "react-router-dom";
-// import Chip from "@/components/Chip";
-
-// export enum CardTypes {
-//   KID = "kid",
-//   WORKSHOP = "workshop",
-// }
-
-// const cardTypeUrlMap = {
-//   [CardTypes.KID]: (id: string) => `/kids/${id}`,
-//   [CardTypes.WORKSHOP]: (id: string) => `/workshops/${id}`,
-// };
-
-// const cardTypeDefaultPhotoMap = {
-//   [CardTypes.KID]: "public/default-kid.svg",
-//   [CardTypes.WORKSHOP]: "public/default-workshop.svg",
-// };
-
 interface Props {
   children: React.ReactNode;
 }
 
-// const linkTo = cardTypeUrlMap[props.type](props.id);
-
-// const photo = props.photoUrl
-//   ? props.photoUrl
-//   : cardTypeDefaultPhotoMap[props.type];
-
 export default function Card(props: Props) {
   return (
-    <div className="relative flex w-96 flex-col rounded-xl bg-amber-50 bg-clip-border text-gray-700 shadow-md">
+    <div className="relative flex flex-col rounded-xl bg-amber-50 bg-clip-border text-gray-700 shadow-md">
       {props.children}
+    </div>
+  );
+}
+
+export function CardImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative mx-4 mt-4 h-40 overflow-hidden rounded-xl bg-white bg-clip-content text-gray-700 shadow-lg">
+      <img src={src} alt={alt} className="mx-auto w-full" />
     </div>
   );
 }
