@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import PageTitle from "@/components/PageTitle";
 import "@/app.css";
 
 export default function Home() {
   return (
     <main className="container mx-auto">
-      <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl pb-12">Kids & Workshops</h1>
+      <PageTitle text="Kids & Workshops" />
       <div className="flex items-center justify-center gap-x-12">
         <Link
           to="/kids"
