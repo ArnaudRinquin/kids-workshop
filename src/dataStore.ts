@@ -16,12 +16,10 @@ function useData(): State {
   if (!rawData) {
     localStorage.setItem("data", JSON.stringify(initialData));
   }
-  return (
-    rawData ? (JSON.parse(rawData) as typeof initialData) : initialData
-  ) as State;
+  return (rawData ? (JSON.parse(rawData) as State) : initialData) as State;
 }
 
-function saveData(data: typeof initialData) {
+function saveData(data: State) {
   localStorage.setItem("data", JSON.stringify(data));
 }
 
@@ -51,7 +49,9 @@ export function useAvailableWorkshopsForKid({ kidId }: { kidId: string }) {
   const workshops = useWorkshops();
   const kidSessions = useSuccessfullSessionsForKid({ kidId });
   const kidWorkshopIds = kidSessions.map((session) => session.workshopId);
-  return workshops.filter((workshop) => !kidWorkshopIds.includes(workshop.id));
+  return workshops
+    .filter((workshop) => !kidWorkshopIds.includes(workshop.id))
+    .sort((a, b) => a.difficulty - b.difficulty);
 }
 
 export function useSessionsForKid({ kidId }: { kidId: string }) {
@@ -109,10 +109,12 @@ export function useMarkSessionAsSuccessfull({
         session.triedAt = Date.now();
       }
       session.succededAt = Date.now();
-      saveData({
-        ...data,
-        sessions: [...sessions.filter((s) => s.id !== session.id), session],
-      });
+      const newSessions = [
+        ...sessions.filter((s) => s.id !== session.id),
+        session,
+      ];
+      const newState = { ...data, sessions: newSessions };
+      saveData(newState);
     } else {
       sessions.push({
         id: uuid(),
