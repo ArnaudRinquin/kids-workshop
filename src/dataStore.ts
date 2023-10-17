@@ -1,15 +1,24 @@
 import initialData from "./data.json";
 import { v4 as uuid } from "uuid";
+import { Kid, Session, Workshop } from "./types";
 
-function useData() {
+type State = {
+  kids: Kid[];
+  workshops: Workshop[];
+  sessions: Session[];
+};
+
+function useData(): State {
   if (typeof window === "undefined") {
-    return initialData;
+    return initialData as State;
   }
   const rawData = localStorage.getItem("data");
   if (!rawData) {
     localStorage.setItem("data", JSON.stringify(initialData));
   }
-  return rawData ? (JSON.parse(rawData) as typeof initialData) : initialData;
+  return (
+    rawData ? (JSON.parse(rawData) as typeof initialData) : initialData
+  ) as State;
 }
 
 function saveData(data: typeof initialData) {
@@ -74,7 +83,7 @@ export function useStartSession({
         workshopId,
         triedAt: Date.now(),
         succededAt: null,
-      });
+      } as Session);
     } else {
       throw new Error("Session already started");
     }
