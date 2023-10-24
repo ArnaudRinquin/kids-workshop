@@ -1,6 +1,8 @@
+import { Maybe } from "@/types";
 import classnames from "classnames";
+import React from "react";
 type Props = {
-  currentStep: number;
+  currentStep: Maybe<number>;
   steps: {
     key: string;
     children: React.ReactNode;
@@ -8,13 +10,13 @@ type Props = {
   }[];
 };
 
-export function Progress(props: Props) {
+export function ProgressBar(props: Props) {
   return (
     <div className="flex items-center">
       {props.steps.map((step, index) => {
-        const passed = index <= props.currentStep;
+        const passed = props.currentStep != null && index <= props.currentStep;
         return (
-          <>
+          <React.Fragment key={step.key}>
             {index !== 0 && (
               <hr
                 className={classnames("grow h-0.5 border-2", {
@@ -31,12 +33,11 @@ export function Progress(props: Props) {
                   "bg-gray-500": !passed,
                 }
               )}
-              key={step.key}
               onClick={step.onClick}
             >
               {step.children}
             </button>
-          </>
+          </React.Fragment>
         );
       })}
     </div>
