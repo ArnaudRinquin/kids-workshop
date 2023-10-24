@@ -8,14 +8,14 @@ export default function Workshop() {
   }
   const workshop = useWorkshop({ workshopId: params.workshopId });
   if (!workshop) {
-    return <main>Workshop not found 🚨</main>;
+    return <main>Atelier non trouvé 🚨</main>;
   }
   return (
     <main className="">
-      <h1>Workshop #{workshop.name}</h1>
+      <h1>Atelier #{workshop.name}</h1>
       <img src={workshop.photoUrl ?? undefined} alt={workshop.name} />
-      <Link to="/workshops">Back</Link>
-      <Link to="/">Home</Link>
+      <Link to="/workshops">Retour</Link>
+      <Link to="/">Accueil</Link>
     </main>
   );
 }

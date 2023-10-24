@@ -286,334 +286,35 @@
       "id": "29",
       "name": "Workshop 29",
       "difficulty": 5
-    },
-    {
-      "id": "30",
-      "name": "Workshop 30",
-      "difficulty": 70
-    },
-    {
-      "id": "31",
-      "name": "Workshop 31",
-      "difficulty": 40
-    },
-    {
-      "id": "32",
-      "name": "Workshop 32",
-      "difficulty": 15
-    },
-    {
-      "id": "33",
-      "name": "Workshop 33",
-      "difficulty": 85
-    },
-    {
-      "id": "34",
-      "name": "Workshop 34",
-      "difficulty": 20
-    },
-    {
-      "id": "35",
-      "name": "Workshop 35",
-      "difficulty": 90
-    },
-    {
-      "id": "36",
-      "name": "Workshop 36",
-      "difficulty": 35
-    },
-    {
-      "id": "37",
-      "name": "Workshop 37",
-      "difficulty": 65
-    },
-    {
-      "id": "38",
-      "name": "Workshop 38",
-      "difficulty": 45
-    },
-    {
-      "id": "39",
-      "name": "Workshop 39",
-      "difficulty": 55
-    },
-    {
-      "id": "40",
-      "name": "Workshop 40",
-      "difficulty": 95
-    },
-    {
-      "id": "41",
-      "name": "Workshop 41",
-      "difficulty": 50
-    },
-    {
-      "id": "42",
-      "name": "Workshop 42",
-      "difficulty": 25
-    },
-    {
-      "id": "43",
-      "name": "Workshop 43",
-      "difficulty": 75
-    },
-    {
-      "id": "44",
-      "name": "Workshop 44",
-      "difficulty": 10
-    },
-    {
-      "id": "45",
-      "name": "Workshop 45",
-      "difficulty": 80
-    },
-    {
-      "id": "46",
-      "name": "Workshop 46",
-      "difficulty": 30
-    },
-    {
-      "id": "47",
-      "name": "Workshop 47",
-      "difficulty": 60
-    },
-    {
-      "id": "48",
-      "name": "Workshop 48",
-      "difficulty": 5
-    },
-    {
-      "id": "49",
-      "name": "Workshop 49",
-      "difficulty": 70
-    },
-    {
-      "id": "50",
-      "name": "Workshop 50",
-      "difficulty": 40
-    },
-    {
-      "id": "51",
-      "name": "Workshop 51",
-      "difficulty": 15
-    },
-    {
-      "id": "52",
-      "name": "Workshop 52",
-      "difficulty": 85
-    },
-    {
-      "id": "53",
-      "name": "Workshop 53",
-      "difficulty": 20
-    },
-    {
-      "id": "54",
-      "name": "Workshop 54",
-      "difficulty": 90
-    },
-    {
-      "id": "55",
-      "name": "Workshop 55",
-      "difficulty": 35
-    },
-    {
-      "id": "56",
-      "name": "Workshop 56",
-      "difficulty": 65
-    },
-    {
-      "id": "57",
-      "name": "Workshop 57",
-      "difficulty": 45
-    },
-    {
-      "id": "58",
-      "name": "Workshop 58",
-      "difficulty": 55
-    },
-    {
-      "id": "59",
-      "name": "Workshop 59",
-      "difficulty": 95
-    },
-    {
-      "id": "60",
-      "name": "Workshop 60",
-      "difficulty": 50
-    },
-    {
-      "id": "61",
-      "name": "Workshop 61",
-      "difficulty": 25
-    },
-    {
-      "id": "62",
-      "name": "Workshop 62",
-      "difficulty": 75
-    },
-    {
-      "id": "63",
-      "name": "Workshop 63",
-      "difficulty": 10
-    },
-    {
-      "id": "64",
-      "name": "Workshop 64",
-      "difficulty": 80
-    },
-    {
-      "id": "65",
-      "name": "Workshop 65",
-      "difficulty": 30
-    },
-    {
-      "id": "66",
-      "name": "Workshop 66",
-      "difficulty": 60
-    },
-    {
-      "id": "67",
-      "name": "Workshop 67",
-      "difficulty": 5
-    },
-    {
-      "id": "68",
-      "name": "Workshop 68",
-      "difficulty": 70
-    },
-    {
-      "id": "69",
-      "name": "Workshop 69",
-      "difficulty": 40
-    },
-    {
-      "id": "70",
-      "name": "Workshop 70",
-      "difficulty": 15
-    },
-    {
-      "id": "71",
-      "name": "Workshop 71",
-      "difficulty": 85
-    },
-    {
-      "id": "72",
-      "name": "Workshop 72",
-      "difficulty": 20
-    },
-    {
-      "id": "73",
-      "name": "Workshop 73",
-      "difficulty": 90
-    },
-    {
-      "id": "74",
-      "name": "Workshop 74",
-      "difficulty": 35
-    },
-    {
-      "id": "75",
-      "name": "Workshop 75",
-      "difficulty": 65
-    },
-    {
-      "id": "76",
-      "name": "Workshop 76",
-      "difficulty": 45
-    },
-    {
-      "id": "77",
-      "name": "Workshop 77",
-      "difficulty": 55
-    },
-    {
-      "id": "78",
-      "name": "Workshop 78",
-      "difficulty": 95
-    },
-    {
-      "id": "79",
-      "name": "Workshop 79",
-      "difficulty": 50
-    },
-    {
-      "id": "80",
-      "name": "Workshop 80",
-      "difficulty": 25
-    },
-    {
-      "id": "81",
-      "name": "Workshop 81",
-      "difficulty": 75
-    },
-    {
-      "id": "82",
-      "name": "Workshop 82",
-      "difficulty": 10
-    },
-    {
-      "id": "83",
-      "name": "Workshop 83",
-      "difficulty": 80
-    },
-    {
-      "id": "84",
-      "name": "Workshop 84",
-      "difficulty": 30
-    },
-    {
-      "id": "85",
-      "name": "Workshop 85",
-      "difficulty": 60
-    },
-    {
-      "id": "86",
-      "name": "Workshop 86",
-      "difficulty": 5
-    },
-    {
-      "id": "87",
-      "name": "Workshop 87",
-      "difficulty": 70
-    },
-    {
-      "id": "88",
-      "name": "Workshop 88",
-      "difficulty": 40
-    },
-    {
-      "id": "89",
-      "name": "Workshop 89",
-      "difficulty": 15
-    },
-    {
-      "id": "90",
-      "name": "Workshop 90",
-      "difficulty": 85
     }
   ],
-  "sessions": [
+  "progresses": [
     {
       "id": "1",
       "kidId": "1",
       "workshopId": "1",
-      "triedAt": 1697144305799,
-      "succededAt": null
+      "presentedAt": 1697144305799,
+      "validatedAt": null,
+      "success": "b",
+      "completion": 2
     },
     {
       "id": "2",
       "kidId": "1",
       "workshopId": "2",
-      "triedAt": 1697144351507,
-      "succededAt": 1697144357506
+      "presentedAt": 1697144351507,
+      "validatedAt": 1697144357506,
+      "success": "a",
+      "completion": 1
     },
     {
       "id": "3",
       "kidId": "2",
       "workshopId": "3",
-      "triedAt": 1697144386630,
-      "succededAt": 1697142386630
+      "presentedAt": 1697144386630,
+      "validatedAt": 1697142386630,
+      "success": "a",
+      "completion": 1
     }
   ]
 }

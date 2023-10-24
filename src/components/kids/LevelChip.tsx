@@ -7,8 +7,16 @@ const chipVariantMap: Record<KidLevel, ChipVariant> = {
   advanced: "red",
 };
 
+const chipLabelMap: Record<KidLevel, string> = {
+  beginner: "petit",
+  intermediate: "moyen",
+  advanced: "grand",
+};
+
 export function KidLevelChip(props: { level: KidLevel }) {
   return (
-    <Chip variant={chipVariantMap[props.level]}>Level: {props.level}</Chip>
+    <Chip variant={chipVariantMap[props.level]}>
+      Niveau : {chipLabelMap[props.level]}
+    </Chip>
   );
 }

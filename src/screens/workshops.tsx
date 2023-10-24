@@ -8,7 +8,7 @@ export default function Workshops() {
   const workshops = useWorkshops();
   return (
     <PageContainer>
-      <PageTitle backLink="/">Workshops</PageTitle>
+      <PageTitle backLink="/">Ateliers</PageTitle>
       <CardGrid>
         {workshops.map((workshop) => (
           <WorkshopCard

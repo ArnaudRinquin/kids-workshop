@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card, { CardImage } from "../Card";
-import placeholderSrc from "../../../public/default-kid.svg";
+import placeholderSrc from "./default-kid.svg";
 import { Kid } from "@/types";
 import { KidLevelChip } from "./LevelChip";
 

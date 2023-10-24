@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card, { CardImage } from "../Card";
-import placeholderSrc from "../../../public/default-workshop.svg";
+import placeholderSrc from "./default-workshop.svg";
 import Chip, { ChipVariant } from "../Chip";
 import { Workshop } from "@/types";
 
@@ -22,21 +22,21 @@ function getVariableForDifficulty(
 
 export function WorkshopCard(props: Props) {
   return (
-    <Link to={`/workshops/${props.id}`}>
-      <Card>
-        <CardImage src={props.photoUrl ?? placeholderSrc} alt={props.name} />
-        <div className="p-4 text-center gap-4 flex flex-col">
+    <Card>
+      <CardImage src={props.photoUrl ?? placeholderSrc} alt={props.name} />
+      <div className="p-4 text-center gap-4 flex flex-col">
+        <Link to={`/workshops/${props.id}`}>
           <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
             {props.name}
           </h4>
-          <p className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
-            <Chip variant={getVariableForDifficulty(props.difficulty)}>
-              Difficulty: {props.difficulty}
-            </Chip>
-          </p>
-          {props.children}
+        </Link>
+        <div className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
+          <Chip variant={getVariableForDifficulty(props.difficulty)}>
+            Difficulté: {props.difficulty}
+          </Chip>
         </div>
-      </Card>
-    </Link>
+        {props.children}
+      </div>
+    </Card>
   );
 }

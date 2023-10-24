@@ -6,10 +6,10 @@ import { PageContainer } from "@/components/PageContainer";
 export default function Home() {
   return (
     <PageContainer>
-      <PageTitle>Kids & Workshops</PageTitle>
+      <PageTitle>Élèves & Ateliers</PageTitle>
       <div className="flex items-center justify-center gap-x-12">
-        <ButtonLink to="/kids">Kids</ButtonLink>
-        <ButtonLink to="/workshops">Workshops</ButtonLink>
+        <ButtonLink to="/kids">Élèves</ButtonLink>
+        <ButtonLink to="/workshops">Ateliers</ButtonLink>
       </div>
     </PageContainer>
   );

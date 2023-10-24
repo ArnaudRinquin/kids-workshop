@@ -17,10 +17,12 @@ export type Workshop = {
   photoUrl: Maybe<string>;
 };
 
-export type Session = {
+export type Progress = {
   id: UUID;
   kidId: UUID;
   workshopId: UUID;
-  succededAt: Maybe<number>;
-  triedAt: Maybe<number>;
+  presentedAt: Maybe<number>;
+  success: Maybe<"a" | "b" | "c">;
+  completion: Maybe<1 | 2>;
+  validatedAt: Maybe<number>;
 };

@@ -8,7 +8,7 @@ export default function Kids() {
   const kids = useKids();
   return (
     <PageContainer>
-      <PageTitle backLink="/">Kids</PageTitle>
+      <PageTitle backLink="/">Élèves</PageTitle>
       <CardGrid>
         {kids.map((kid) => (
           <KidsCard
