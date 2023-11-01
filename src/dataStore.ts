@@ -2,6 +2,7 @@ import initialData from "./data.json";
 import { v4 as uuid } from "uuid";
 import { Kid, Progress, Workshop } from "./types";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type State = {
   kids: Kid[];
@@ -27,112 +28,127 @@ type State = {
     workshopId: string;
     completion: Progress["completion"];
   }) => void;
+  reset: () => void;
 };
 
 const _d = initialData as State;
 
-export const useStore = create<State>((set) => ({
-  kids: _d.kids,
-  workshops: _d.workshops,
-  progresses: _d.progresses,
-  setPresentedAt: ({ kidId, workshopId, date = Date.now() }) => {
-    set((state) => {
-      const progresses = state.progresses;
-      const progress = progresses.find(
-        (progress) =>
-          progress.kidId === kidId && progress.workshopId === workshopId
-      );
-      if (!progress) {
-        progresses.push({
-          id: uuid(),
-          kidId,
-          workshopId,
-          presentedAt: date,
-          validatedAt: null,
-          completion: null,
-          success: null,
+export const useStore = create(
+  persist<State>(
+    (set) => ({
+      kids: _d.kids,
+      workshops: _d.workshops,
+      progresses: _d.progresses,
+      reset: () => {
+        set({
+          kids: _d.kids,
+          workshops: _d.workshops,
+          progresses: _d.progresses,
         });
-      } else {
-        progress.presentedAt = date;
-      }
-      return { ...state, progresses };
-    });
-  },
-  setValidatedAt: ({ kidId, workshopId, date = Date.now() }) => {
-    set((state) => {
-      const progresses = state.progresses;
-      const progress = progresses.find(
-        (progress) =>
-          progress.kidId === kidId && progress.workshopId === workshopId
-      );
-      if (!progress) {
-        progresses.push({
-          id: uuid(),
-          kidId,
-          workshopId,
-          presentedAt: date,
-          validatedAt: date,
-          completion: 1,
-          success: "a",
+      },
+      setPresentedAt: ({ kidId, workshopId, date = Date.now() }) => {
+        set((state) => {
+          const progresses = state.progresses;
+          const progress = progresses.find(
+            (progress) =>
+              progress.kidId === kidId && progress.workshopId === workshopId
+          );
+          if (!progress) {
+            progresses.push({
+              id: uuid(),
+              kidId,
+              workshopId,
+              presentedAt: date,
+              validatedAt: null,
+              completion: null,
+              success: null,
+            });
+          } else {
+            progress.presentedAt = date;
+          }
+          return { ...state, progresses };
         });
-      } else {
-        progress.presentedAt = progress.presentedAt ?? date;
-        progress.validatedAt = date;
-        progress.completion = 1;
-        progress.success = "a";
-      }
-      return { ...state, progresses };
-    });
-  },
-  setSuccess: ({ kidId, workshopId, success }) => {
-    set((state) => {
-      const progresses = state.progresses;
-      const progress = progresses.find(
-        (progress) =>
-          progress.kidId === kidId && progress.workshopId === workshopId
-      );
-      if (!progress) {
-        progresses.push({
-          id: uuid(),
-          kidId,
-          workshopId,
-          presentedAt: Date.now(),
-          validatedAt: null,
-          completion: null,
-          success,
+      },
+      setValidatedAt: ({ kidId, workshopId, date = Date.now() }) => {
+        set((state) => {
+          const progresses = state.progresses;
+          const progress = progresses.find(
+            (progress) =>
+              progress.kidId === kidId && progress.workshopId === workshopId
+          );
+          if (!progress) {
+            progresses.push({
+              id: uuid(),
+              kidId,
+              workshopId,
+              presentedAt: date,
+              validatedAt: date,
+              completion: 1,
+              success: "a",
+            });
+          } else {
+            progress.presentedAt = progress.presentedAt ?? date;
+            progress.validatedAt = date;
+            progress.completion = 1;
+            progress.success = "a";
+          }
+          return { ...state, progresses };
         });
-      } else {
-        progress.presentedAt = progress.presentedAt ?? Date.now();
-        progress.success = success;
-      }
-      return { ...state, progresses };
-    });
-  },
-  setCompletion: ({ kidId, workshopId, completion }) => {
-    set((state) => {
-      const progresses = state.progresses;
-      const progress = progresses.find(
-        (progress) =>
-          progress.kidId === kidId && progress.workshopId === workshopId
-      );
-      if (!progress) {
-        progresses.push({
-          id: uuid(),
-          kidId,
-          workshopId,
-          presentedAt: Date.now(),
-          validatedAt: null,
-          completion,
-          success: null,
+      },
+      setSuccess: ({ kidId, workshopId, success }) => {
+        set((state) => {
+          const progresses = state.progresses;
+          const progress = progresses.find(
+            (progress) =>
+              progress.kidId === kidId && progress.workshopId === workshopId
+          );
+          if (!progress) {
+            progresses.push({
+              id: uuid(),
+              kidId,
+              workshopId,
+              presentedAt: Date.now(),
+              validatedAt: null,
+              completion: null,
+              success,
+            });
+          } else {
+            progress.presentedAt = progress.presentedAt ?? Date.now();
+            progress.success = success;
+          }
+          return { ...state, progresses };
         });
-      } else {
-        progress.presentedAt = progress.presentedAt ?? Date.now();
-        progress.completion = completion;
-      }
-      return { ...state, progresses };
-    });
-  },
-}));
+      },
+      setCompletion: ({ kidId, workshopId, completion }) => {
+        set((state) => {
+          const progresses = state.progresses;
+          const progress = progresses.find(
+            (progress) =>
+              progress.kidId === kidId && progress.workshopId === workshopId
+          );
+          if (!progress) {
+            progresses.push({
+              id: uuid(),
+              kidId,
+              workshopId,
+              presentedAt: Date.now(),
+              validatedAt: null,
+              completion,
+              success: null,
+            });
+          } else {
+            progress.presentedAt = progress.presentedAt ?? Date.now();
+            progress.completion = completion;
+          }
+          return { ...state, progresses };
+        });
+      },
+    }),
+    {
+      name: "k&w",
+    }
+  )
+);
 
 export function useKids() {
   return useStore((state) => state.kids);
