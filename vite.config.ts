@@ -10,6 +10,9 @@ export default defineConfig({
     react(),
     VitePWA({
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,png,jpg,jpeg,svg,json}"],
+      },
       manifest: {
         name: "Kids & Workshops",
         short_name: "K&W",
