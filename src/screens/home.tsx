@@ -11,8 +11,12 @@ export default function Home() {
         Élèves & Ateliers<Link to="/settings">⚙️</Link>
       </PageTitle>
       <div className="flex items-center justify-center gap-x-12">
-        <ButtonLink to="/kids">Élèves</ButtonLink>
-        <ButtonLink to="/workshops">Ateliers</ButtonLink>
+        <ButtonLink className="grow" to="/kids">
+          Élèves
+        </ButtonLink>
+        <ButtonLink className="grow" to="/workshops">
+          Ateliers
+        </ButtonLink>
       </div>
     </PageContainer>
   );

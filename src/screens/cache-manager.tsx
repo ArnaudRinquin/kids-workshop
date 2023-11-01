@@ -4,6 +4,7 @@ import {
   useCachedRequests,
   useFromCache,
 } from "@/cache";
+import { Button } from "@/components/Button";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
 import React from "react";
@@ -41,19 +42,17 @@ export function CacheManager() {
 
       <ul>
         {cachedURLs.map((request) => (
-          <>
-            <li key={request.url}>
-              <ImageFromCache src={request.url} />
-            </li>
-            <button
+          <li key={request.url} className="flex items-center">
+            <ImageFromCache src={request.url} />
+            <Button
               onClick={() => {
                 deleteCachedRequest(request.url);
                 setKey(uuid());
               }}
             >
               Delete
-            </button>
-          </>
+            </Button>
+          </li>
         ))}
       </ul>
     </PageContainer>
