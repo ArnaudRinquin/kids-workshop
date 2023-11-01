@@ -1,5 +1,6 @@
 import { saveToCache, useFromCache } from "@/cache";
 import { PageContainer } from "@/components/PageContainer";
+import PageTitle from "@/components/PageTitle";
 import React from "react";
 import { v4 as uuid } from "uuid";
 
@@ -18,7 +19,7 @@ export function Settings() {
 
   return (
     <PageContainer>
-      Settings
+      <PageTitle backLink="/">Settings</PageTitle>
       <input
         id="photo"
         type="file"
