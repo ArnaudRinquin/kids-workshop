@@ -1,3 +1,10 @@
+import { PWAHandler } from "@/pwa";
+
 export function PageContainer({ children }: { children: React.ReactNode }) {
-  return <div className="container mx-auto p-10">{children}</div>;
+  return (
+    <>
+      <PWAHandler />
+      <div className="container mx-auto p-10">{children}</div>
+    </>
+  );
 }
