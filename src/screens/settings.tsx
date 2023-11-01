@@ -1,3 +1,4 @@
+import { clearCache } from "@/cache";
 import { Button } from "@/components/Button";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageContainer } from "@/components/PageContainer";
@@ -7,7 +8,10 @@ import { useStore } from "@/dataStore";
 export function Settings() {
   const { reset } = useStore();
   const confirmAndReset = () => {
-    confirm("Are you sure you want to reset the data?") && reset();
+    if (confirm("Are you sure you want to reset the data?")) {
+      reset();
+      clearCache();
+    }
   };
   return (
     <PageContainer>

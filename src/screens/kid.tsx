@@ -1,3 +1,4 @@
+import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { CardGrid } from "@/components/CardGrid";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
@@ -13,6 +14,7 @@ import {
   // useStartProgress,
   useSuccessfullProgressesForKid,
   useWorkshop,
+  useSetKidPhotoUrl,
 } from "@/dataStore";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
 import { useParams } from "react-router-dom";
@@ -36,6 +38,8 @@ export default function KidPage() {
     kidId: params.kidId,
   });
 
+  const setKidPhoto = useSetKidPhotoUrl();
+
   if (!kid) {
     return <main>Enfant perdu 🚨</main>;
   }
@@ -46,6 +50,18 @@ export default function KidPage() {
         <>
           {kid.name}
           <KidLevelChip level={kid.level} />
+          <CachedImageInput
+            className="ml-auto"
+            onChange={(url) => {
+              console.log("url", url);
+              setKidPhoto({
+                photoUrl: url,
+                kidId: kid.id,
+              });
+            }}
+          >
+            📸
+          </CachedImageInput>
         </>
       </PageTitle>
 

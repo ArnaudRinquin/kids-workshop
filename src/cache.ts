@@ -64,3 +64,7 @@ export function useCachedRequests(refreshKey: string) {
   }, [refreshKey]);
   return cacheList;
 }
+
+export function clearCache() {
+  return caches.delete(CACHE_KEY);
+}

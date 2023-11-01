@@ -1,9 +1,15 @@
-export function CardGrid({ children }: { children: React.ReactNode }) {
+export function CardGrid({
+  children,
+  minItemWidth = 300,
+}: {
+  children: React.ReactNode;
+  minItemWidth?: number;
+}) {
   return (
     <div
       className="grid items-center justify-center gap-12"
       style={{
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+        gridTemplateColumns: `repeat(auto-fill, minmax(${minItemWidth}px, 1fr))`,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import initialData from "./data.json";
 import { v4 as uuid } from "uuid";
-import { Kid, Progress, Workshop } from "./types";
+import { Kid, Maybe, Progress, Workshop } from "./types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -8,6 +8,7 @@ type State = {
   kids: Kid[];
   workshops: Workshop[];
   progresses: Progress[];
+  setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
   setPresentedAt: (args: {
     kidId: string;
     workshopId: string;
@@ -44,6 +45,18 @@ export const useStore = create(
           kids: _d.kids,
           workshops: _d.workshops,
           progresses: _d.progresses,
+        });
+      },
+      setKidPhotoUrl: ({ kidId, photoUrl }) => {
+        set((state) => {
+          const kids = state.kids;
+          const kid = kids.find((kid) => kid.id === kidId);
+          if (kid) {
+            kid.photoUrl = photoUrl;
+          } else {
+            throw new Error(`Kid with id ${kidId} not found`);
+          }
+          return { ...state, kids };
         });
       },
       setPresentedAt: ({ kidId, workshopId, date = Date.now() }) => {
@@ -202,4 +215,8 @@ export function useProgressForKidAndWorkshop({
   return progresses.find(
     (progress) => progress.kidId === kidId && progress.workshopId === workshopId
   );
+}
+
+export function useSetKidPhotoUrl() {
+  return useStore((state) => state.setKidPhotoUrl);
 }

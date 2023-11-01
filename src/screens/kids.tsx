@@ -9,7 +9,7 @@ export default function Kids() {
   return (
     <PageContainer>
       <PageTitle backLink="/">Élèves</PageTitle>
-      <CardGrid>
+      <CardGrid minItemWidth={200}>
         {kids.map((kid) => (
           <KidsCard
             key={kid.id}
