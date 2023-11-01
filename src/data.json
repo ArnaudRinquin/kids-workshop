@@ -144,148 +144,528 @@
   "workshops": [
     {
       "id": "1",
-      "name": "Workshop 1",
+      "name": "Se déplacer avec une cuillère",
       "difficulty": 1
     },
     {
       "id": "2",
-      "name": "Workshop 2",
-      "difficulty": 100
+      "name": "S'asseoir sur une chaise",
+      "difficulty": 2
     },
     {
       "id": "3",
-      "name": "Workshop 3",
-      "difficulty": 50
+      "name": "Enrouler un tapis",
+      "difficulty": 3
     },
     {
       "id": "4",
-      "name": "Workshop 4",
-      "difficulty": 25
+      "name": "Ranger une chaise",
+      "difficulty": 4
     },
     {
       "id": "5",
-      "name": "Workshop 5",
-      "difficulty": 75
+      "name": "Ouvrir et fermer des pinces à linge",
+      "difficulty": 5
     },
     {
       "id": "6",
-      "name": "Workshop 6",
-      "difficulty": 10
+      "name": "Mettre des élastiques autour d'un tube",
+      "difficulty": 6
     },
     {
       "id": "7",
-      "name": "Workshop 7",
-      "difficulty": 80
+      "name": "Ouvrir et fermer des boutons",
+      "difficulty": 7
     },
     {
       "id": "8",
-      "name": "Workshop 8",
-      "difficulty": 30
+      "name": "Visser et dévisser des flacons",
+      "difficulty": 8
     },
     {
       "id": "9",
-      "name": "Workshop 9",
-      "difficulty": 60
+      "name": "Assembler des chaussettes par paires",
+      "difficulty": 9
     },
     {
       "id": "10",
-      "name": "Workshop 10",
-      "difficulty": 5
-    },
-    {
-      "id": "11",
-      "name": "Workshop 11",
-      "difficulty": 70
-    },
-    {
-      "id": "12",
-      "name": "Workshop 12",
-      "difficulty": 40
-    },
-    {
-      "id": "13",
-      "name": "Workshop 13",
-      "difficulty": 15
-    },
-    {
-      "id": "14",
-      "name": "Workshop 14",
-      "difficulty": 85
-    },
-    {
-      "id": "15",
-      "name": "Workshop 15",
-      "difficulty": 20
-    },
-    {
-      "id": "16",
-      "name": "Workshop 16",
-      "difficulty": 90
-    },
-    {
-      "id": "17",
-      "name": "Workshop 17",
-      "difficulty": 35
-    },
-    {
-      "id": "18",
-      "name": "Workshop 18",
-      "difficulty": 65
-    },
-    {
-      "id": "19",
-      "name": "Workshop 19",
-      "difficulty": 45
-    },
-    {
-      "id": "20",
-      "name": "Workshop 20",
-      "difficulty": 55
-    },
-    {
-      "id": "21",
-      "name": "Workshop 21",
-      "difficulty": 95
-    },
-    {
-      "id": "22",
-      "name": "Workshop 22",
-      "difficulty": 50
-    },
-    {
-      "id": "23",
-      "name": "Workshop 23",
-      "difficulty": 25
-    },
-    {
-      "id": "24",
-      "name": "Workshop 24",
-      "difficulty": 75
-    },
-    {
-      "id": "25",
-      "name": "Workshop 25",
+      "name": "Verser des graines",
       "difficulty": 10
     },
     {
+      "id": "11",
+      "name": "Transvaser des graines",
+      "difficulty": 11
+    },
+    {
+      "id": "12",
+      "name": "Ouvrir et fermer des boutons pressions",
+      "difficulty": 12
+    },
+    {
+      "id": "13",
+      "name": "Transvaser de l'eau",
+      "difficulty": 13
+    },
+    {
+      "id": "14",
+      "name": "Verser jusqu'au trait",
+      "difficulty": 14
+    },
+    {
+      "id": "15",
+      "name": "Utiliser un entonnoir pour remplir",
+      "difficulty": 15
+    },
+    {
+      "id": "16",
+      "name": "Visser et dévisser des boulons",
+      "difficulty": 16
+    },
+    {
+      "id": "17",
+      "name": "Ouvrir et fermer une fermeture zip",
+      "difficulty": 17
+    },
+    {
+      "id": "18",
+      "name": "Nettoyer un miroir",
+      "difficulty": 18
+    },
+    {
+      "id": "19",
+      "name": "Verser avec une théière",
+      "difficulty": 19
+    },
+    {
+      "id": "20",
+      "name": "Ouvrir et fermer des cadenas",
+      "difficulty": 20
+    },
+    {
+      "id": "21",
+      "name": "Ouvrir et fermer des boites",
+      "difficulty": 21
+    },
+    {
+      "id": "22",
+      "name": "Attacher des trombones",
+      "difficulty": 22
+    },
+    {
+      "id": "23",
+      "name": "Couper de la pâte à modeler avec des ciseaux",
+      "difficulty": 23
+    },
+    {
+      "id": "24",
+      "name": "Couper de la pâte à modeler avec un couteau",
+      "difficulty": 24
+    },
+    {
+      "id": "25",
+      "name": "Couper du papier avec des ciseaux",
+      "difficulty": 25
+    },
+    {
       "id": "26",
-      "name": "Workshop 26",
-      "difficulty": 80
+      "name": "Coller du papier",
+      "difficulty": 26
     },
     {
       "id": "27",
-      "name": "Workshop 27",
-      "difficulty": 30
+      "name": "Couper de la pâte à modeler avec une fourchette et un couteau",
+      "difficulty": 27
     },
     {
       "id": "28",
-      "name": "Workshop 28",
-      "difficulty": 60
+      "name": "Utiliser un poinçon",
+      "difficulty": 28
     },
     {
       "id": "29",
-      "name": "Workshop 29",
-      "difficulty": 5
+      "name": "Plier un tissue",
+      "difficulty": 29
+    },
+    {
+      "id": "30",
+      "name": "Plier du papier",
+      "difficulty": 30
+    },
+    {
+      "id": "31",
+      "name": "Transvaser des pompons avec une pince",
+      "difficulty": 31
+    },
+    {
+      "id": "32",
+      "name": "Transvaser des glaçons avec une pince",
+      "difficulty": 32
+    },
+    {
+      "id": "33",
+      "name": "Transvaser des noix avec une pince",
+      "difficulty": 33
+    },
+    {
+      "id": "34",
+      "name": "Transvaser des noisettes avec une pince",
+      "difficulty": 34
+    },
+    {
+      "id": "35",
+      "name": "Transvaser des petits pavés de mousse avec une pince",
+      "difficulty": 35
+    },
+    {
+      "id": "36",
+      "name": "Placer de petites perles sur un support",
+      "difficulty": 36
+    },
+    {
+      "id": "37",
+      "name": "Transvaser de l'eau avec une pipette",
+      "difficulty": 37
+    },
+    {
+      "id": "38",
+      "name": "Gérer de la peinture",
+      "difficulty": 38
+    },
+    {
+      "id": "39",
+      "name": "Utiliser une pelle et une balayette",
+      "difficulty": 39
+    },
+    {
+      "id": "40",
+      "name": "Tailler des crayons",
+      "difficulty": 40
+    },
+    {
+      "id": "41",
+      "name": "Tresser des lanières",
+      "difficulty": 41
+    },
+    {
+      "id": "42",
+      "name": "Faire des lacets",
+      "difficulty": 42
+    },
+    {
+      "id": "43",
+      "name": "La tour rose",
+      "difficulty": 43
+    },
+    {
+      "id": "44",
+      "name": "L'escalier marron",
+      "difficulty": 44
+    },
+    {
+      "id": "45",
+      "name": "Les barres rouges",
+      "difficulty": 45
+    },
+    {
+      "id": "46",
+      "name": "Les couleurs",
+      "difficulty": 46
+    },
+    {
+      "id": "47",
+      "name": "Le nuancier de couleurs",
+      "difficulty": 47
+    },
+    {
+      "id": "48",
+      "name": "Les cylindres tactiles",
+      "difficulty": 48
+    },
+    {
+      "id": "49",
+      "name": "Les coussins de tissus",
+      "difficulty": 49
+    },
+    {
+      "id": "50",
+      "name": "Les blocs sonores",
+      "difficulty": 50
+    },
+    {
+      "id": "51",
+      "name": "Reconnaissance olfactive",
+      "difficulty": 51
+    },
+    {
+      "id": "52",
+      "name": "Les blocs de cylindres",
+      "difficulty": 52
+    },
+    {
+      "id": "53",
+      "name": "Le miroir",
+      "difficulty": 53
+    },
+    {
+      "id": "54",
+      "name": "Les solides géométriques",
+      "difficulty": 54
+    },
+    {
+      "id": "55",
+      "name": "1er plateau de géométrie: les cercles",
+      "difficulty": 55
+    },
+    {
+      "id": "56",
+      "name": "2e plateau de géométrie: les triangles",
+      "difficulty": 56
+    },
+    {
+      "id": "57",
+      "name": "3e plateau de géométrie: les carrés/rectangles",
+      "difficulty": 57
+    },
+    {
+      "id": "58",
+      "name": "4e plateau de géométrie: autres polygones",
+      "difficulty": 58
+    },
+    {
+      "id": "59",
+      "name": "L'arche romane",
+      "difficulty": 59
+    },
+    {
+      "id": "60",
+      "name": "Les barres numériques de 1 à 10",
+      "difficulty": 60
+    },
+    {
+      "id": "61",
+      "name": "Les barrres numériques de 1 à 10 + chiffres",
+      "difficulty": 61
+    },
+    {
+      "id": "62",
+      "name": "Les petites barres numériques/les compléments à 10",
+      "difficulty": 62
+    },
+    {
+      "id": "63",
+      "name": "Les chiffres rugueux de 1 à 9",
+      "difficulty": 63
+    },
+    {
+      "id": "64",
+      "name": "Les fuseaux",
+      "difficulty": 64
+    },
+    {
+      "id": "65",
+      "name": "La mémoire des chiffres",
+      "difficulty": 65
+    },
+    {
+      "id": "66",
+      "name": "Association symbole-quantité",
+      "difficulty": 66
+    },
+    {
+      "id": "67",
+      "name": "Association symbole-quantité à distance",
+      "difficulty": 67
+    },
+    {
+      "id": "68",
+      "name": "Les jetons",
+      "difficulty": 68
+    },
+    {
+      "id": "69",
+      "name": "Les perles de Seguin de 1 à 9",
+      "difficulty": 69
+    },
+    {
+      "id": "70",
+      "name": "Coloriage du petit escalier de perles + les nombres > 10",
+      "difficulty": 70
+    },
+    {
+      "id": "71",
+      "name": "Les perles de Seguin de 11 à 19",
+      "difficulty": 71
+    },
+    {
+      "id": "72",
+      "name": "Les tables de Seguin #1 : de 11 à 19",
+      "difficulty": 72
+    },
+    {
+      "id": "73",
+      "name": "Coloriage perle de Seguin de 11 à 19",
+      "difficulty": 73
+    },
+    {
+      "id": "74",
+      "name": "Les tables de Seguin #2 de 10 à 90",
+      "difficulty": 74
+    },
+    {
+      "id": "75",
+      "name": "Les tables de Seguin #3 de 10 à 99",
+      "difficulty": 75
+    },
+    {
+      "id": "76",
+      "name": "Premières additions avec les perles de Seguin",
+      "difficulty": 76
+    },
+    {
+      "id": "77",
+      "name": "Les perles de Seguin de 10 à 90",
+      "difficulty": 77
+    },
+    {
+      "id": "78",
+      "name": "Le serpent positif",
+      "difficulty": 78
+    },
+    {
+      "id": "79",
+      "name": "Plateau #1 du système décimal",
+      "difficulty": 79
+    },
+    {
+      "id": "80",
+      "name": "Plateau #2 du système décimal",
+      "difficulty": 80
+    },
+    {
+      "id": "81",
+      "name": "Additions avec le matériel symbolique + tapis numérique",
+      "difficulty": 81
+    },
+    {
+      "id": "82",
+      "name": "Tableau de 100 : les nombres → 30",
+      "difficulty": 82
+    },
+    {
+      "id": "83",
+      "name": "Tableau de 100 : les nombres → 50",
+      "difficulty": 83
+    },
+    {
+      "id": "84",
+      "name": "Tableau de 100 : les nombres → 100",
+      "difficulty": 84
+    },
+    {
+      "id": "85",
+      "name": "Le tableau double-entrée",
+      "difficulty": 85
+    },
+    {
+      "id": "86",
+      "name": "Les pinces double-entrée",
+      "difficulty": 86
+    },
+    {
+      "id": "87",
+      "name": "Les pistes graphiques",
+      "difficulty": 87
+    },
+    {
+      "id": "88",
+      "name": "Le sable et le support rugueux",
+      "difficulty": 88
+    },
+    {
+      "id": "89",
+      "name": "Les sons / phonèmes qui composent le prénom",
+      "difficulty": 89
+    },
+    {
+      "id": "90",
+      "name": "Composer son prénom avec les lettres mobiles",
+      "difficulty": 90
+    },
+    {
+      "id": "91",
+      "name": "Écrire son prénom",
+      "difficulty": 91
+    },
+    {
+      "id": "92",
+      "name": "Graphisme sur Velléda série 1",
+      "difficulty": 92
+    },
+    {
+      "id": "93",
+      "name": "Graphisme sur Velléda série 2",
+      "difficulty": 93
+    },
+    {
+      "id": "94",
+      "name": "Les lettres rugueuses cursives - les voyelles",
+      "difficulty": 94
+    },
+    {
+      "id": "95",
+      "name": "Les lettres rugueuses cursives - les consonnes",
+      "difficulty": 95
+    },
+    {
+      "id": "96",
+      "name": "Les formes à dessin",
+      "difficulty": 96
+    },
+    {
+      "id": "97",
+      "name": "Le sable + lettres rugueuses cursives",
+      "difficulty": 97
+    },
+    {
+      "id": "98",
+      "name": "Le sable + chiffres rugueux",
+      "difficulty": 98
+    },
+    {
+      "id": "99",
+      "name": "Les boites à sons",
+      "difficulty": 99
+    },
+    {
+      "id": "100",
+      "name": "Dictée muette série rose",
+      "difficulty": 100
+    },
+    {
+      "id": "101",
+      "name": "Lecture phrases série rose",
+      "difficulty": 101
+    },
+    {
+      "id": "102",
+      "name": "Dictée muette série bleue",
+      "difficulty": 102
+    },
+    {
+      "id": "103",
+      "name": "Lecture phrases série bleue",
+      "difficulty": 103
+    },
+    {
+      "id": "104",
+      "name": "Dictée muette série verte",
+      "difficulty": 104
+    },
+    {
+      "id": "105",
+      "name": "Lecture phrases série verte",
+      "difficulty": 105
     }
   ],
   "progresses": [
