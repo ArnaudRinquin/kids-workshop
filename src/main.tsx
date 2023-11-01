@@ -5,6 +5,7 @@ import Kids from "./screens/kids";
 import Kid from "./screens/kid";
 import Workshops from "./screens/workshops";
 import Workshop from "./screens/workshop";
+import { Settings } from "./screens/settings";
 
 const basename = import.meta.env.KW_BASENAME ?? "/";
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter(
     {
       path: "/workshops/:workshopId",
       element: <Workshop />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
     },
   ],
   {
