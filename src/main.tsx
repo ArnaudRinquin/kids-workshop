@@ -6,6 +6,7 @@ import Kid from "./screens/kid";
 import Workshops from "./screens/workshops";
 import Workshop from "./screens/workshop";
 import { Settings } from "./screens/settings";
+import { CacheManager } from "./screens/cache-manager";
 
 const basename = import.meta.env.KW_BASENAME ?? "/";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter(
     {
       path: "/settings",
       element: <Settings />,
+    },
+    {
+      path: "/settings/cache",
+      element: <CacheManager />,
     },
   ],
   {
