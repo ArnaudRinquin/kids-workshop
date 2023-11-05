@@ -57,32 +57,33 @@ export default function KidPage() {
   }
 
   return (
-    <PageContainer>
-      <PageTitle backLink="/kids">
+    <PageContainer
+      header={
         <>
-          {kid.name}
-          <KidLevelChip level={kid.level} />
-          <CachedImageInput
-            className="ml-auto"
-            onChange={(url) => {
-              setKidPhoto({
-                photoUrl: url,
-                kidId: kid.id,
-              });
-            }}
-          >
-            📸
-          </CachedImageInput>
+          <PageTitle backLink="/kids">
+            {kid.name}
+            <KidLevelChip level={kid.level} />
+            <CachedImageInput
+              className="ml-auto"
+              onChange={(url) => {
+                setKidPhoto({
+                  photoUrl: url,
+                  kidId: kid.id,
+                });
+              }}
+            >
+              📸
+            </CachedImageInput>
+          </PageTitle>
+          <nav className="flex flex-row justify-between items-center">
+            <FilterLink href="#bookmarked">Épinglés</FilterLink>
+            <FilterLink href="#in-progress">En cours</FilterLink>
+            <FilterLink href="#available">À commencer</FilterLink>
+            <FilterLink href="#validated">Validés</FilterLink>
+          </nav>
         </>
-      </PageTitle>
-
-      <nav className="flex flex-row justify-between items-center">
-        <FilterLink href="#bookmarked">Épinglés</FilterLink>
-        <FilterLink href="#in-progress">En cours</FilterLink>
-        <FilterLink href="#available">À commencer</FilterLink>
-        <FilterLink href="#validated">Validés</FilterLink>
-      </nav>
-
+      }
+    >
       <div>
         <KidWorkshopsSection
           id="bookmarked"

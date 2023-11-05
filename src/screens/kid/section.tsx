@@ -22,6 +22,9 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
   const showMore = () => setShowMore(show + 1);
   const hasMore = show * ITEMS_PER_SHOW_MORE < props.workshops.length;
   const workshops = props.workshops.slice(0, show * ITEMS_PER_SHOW_MORE);
+  if (!workshops.length) {
+    return null;
+  }
   return (
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
