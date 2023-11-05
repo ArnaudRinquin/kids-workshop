@@ -7,14 +7,12 @@ import { KidLevelChip } from "@/components/kids/LevelChip";
 import { WorkshopCard } from "@/components/workshops/Card";
 import {
   useStore,
-  useAvailableWorkshopsForKid,
   useKid,
-  // useMarkProgressAsSuccessfull,
   useProgressForKidAndWorkshop,
-  // useStartProgress,
-  useSuccessfullProgressesForKid,
-  useWorkshop,
   useSetKidPhotoUrl,
+  useWorkshopsInProgressForKid,
+  useStartableWorkshopsForKid,
+  useValidatedWorkshopsForKid,
 } from "@/dataStore";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
 import { useParams } from "react-router-dom";
@@ -31,10 +29,14 @@ export default function KidPage() {
     throw new Error("Missing kidId");
   }
   const kid = useKid({ kidId: params.kidId });
-  const availableWorkshops = useAvailableWorkshopsForKid({
+
+  const inProgressWorkshops = useWorkshopsInProgressForKid({
     kidId: params.kidId,
   });
-  const successfullProgresses = useSuccessfullProgressesForKid({
+  const startableWorkshops = useStartableWorkshopsForKid({
+    kidId: params.kidId,
+  });
+  const validatedWorkshops = useValidatedWorkshopsForKid({
     kidId: params.kidId,
   });
 
@@ -65,33 +67,28 @@ export default function KidPage() {
         </>
       </PageTitle>
 
+      <SectionTitle>Ateliers en cours</SectionTitle>
+      <CardGrid>
+        {inProgressWorkshops.map((workshop) => (
+          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
+        ))}
+      </CardGrid>
+
       <SectionTitle>Ateliers disponibles</SectionTitle>
       <CardGrid>
-        {availableWorkshops.map((workshop) => (
+        {startableWorkshops.map((workshop) => (
           <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
         ))}
       </CardGrid>
 
       <SectionTitle>Ateliers validés</SectionTitle>
       <CardGrid>
-        {successfullProgresses.map((progress) => (
-          <ProgressCard key={progress.id} progress={progress} />
+        {validatedWorkshops.map((workshop) => (
+          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
         ))}
       </CardGrid>
     </PageContainer>
   );
-}
-
-function ProgressCard({ progress }: { progress: Progress }) {
-  const workshop = useWorkshop({ workshopId: progress.workshopId });
-  const kid = useKid({ kidId: progress.kidId });
-  if (!workshop) {
-    return <div>Workshop not found 🚨</div>;
-  }
-  if (!kid) {
-    return <div>Workshop not found 🚨</div>;
-  }
-  return <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />;
 }
 
 function AvailableWorkshop({

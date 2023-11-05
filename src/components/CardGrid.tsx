@@ -7,7 +7,7 @@ export function CardGrid({
 }) {
   return (
     <div
-      className="grid items-center justify-center gap-12"
+      className="grid items-top justify-center gap-12"
       style={{
         gridTemplateColumns: `repeat(auto-fill, minmax(${minItemWidth}px, 1fr))`,
       }}
