@@ -1,3 +1,4 @@
+import Card from "@/components/Card";
 import { CardGrid } from "@/components/CardGrid";
 import { IconBookmark } from "@/components/Icons";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -5,6 +6,9 @@ import { WorkshopCard } from "@/components/workshops/Card";
 import { useProgressForKidAndWorkshop, useStore } from "@/dataStore";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
 import classNames from "classnames";
+import React from "react";
+
+const ITEMS_PER_SHOW_MORE = 5;
 
 type KidWorkshopsSectionProps = {
   kid: Kid;
@@ -14,17 +18,31 @@ type KidWorkshopsSectionProps = {
 };
 
 export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
+  const [show, setShowMore] = React.useState(1);
+  const showMore = () => setShowMore(show + 1);
+  const hasMore = show * ITEMS_PER_SHOW_MORE < props.workshops.length;
+  const workshops = props.workshops.slice(0, show * ITEMS_PER_SHOW_MORE);
   return (
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
       <CardGrid>
-        {props.workshops.map((workshop) => (
+        {workshops.map((workshop) => (
           <WorkshopProgress
             key={workshop.id}
             workshop={workshop}
             kid={props.kid}
           />
         ))}
+        {hasMore && (
+          <Card className="flex items-center justify-center">
+            <button
+              className="p-8 text-blue-500 hover:text-blue-700"
+              onClick={showMore}
+            >
+              Voir plus
+            </button>
+          </Card>
+        )}
       </CardGrid>
     </>
   );

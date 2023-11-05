@@ -1,14 +1,19 @@
 import classNames from "classnames";
 
-interface Props {
-  children: React.ReactNode;
-}
+type CardProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
 
-export default function Card(props: Props) {
+export default function Card(props: CardProps) {
   return (
-    <div className="relative flex flex-col rounded-xl bg-amber-50 bg-clip-border text-gray-700 shadow-md">
-      {props.children}
-    </div>
+    <div
+      {...props}
+      className={classNames(
+        "relative flex flex-col rounded-xl bg-amber-50 bg-clip-border text-gray-700 shadow-md",
+        props.className
+      )}
+    />
   );
 }
 
