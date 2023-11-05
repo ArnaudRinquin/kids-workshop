@@ -14,11 +14,19 @@ import { useLocation, useParams } from "react-router-dom";
 import { KidWorkshopsSection } from "./section";
 import classNames from "classnames";
 
-type FilterLinkProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
-const FilterLink = (props: FilterLinkProps) => {
+type FilterLinkProps = React.DetailedHTMLProps<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>;
+const FilterLink = ({ className, ...props }: FilterLinkProps) => {
   const { hash } = useLocation();
 
-  return <a {...props} className={classNames({ underline: hash === props.href })} />;
+  return (
+    <a
+      {...props}
+      className={classNames(className, { underline: hash === props.href })}
+    />
+  );
 };
 
 export default function KidPage() {
@@ -76,13 +84,33 @@ export default function KidPage() {
       </nav>
 
       <div>
-        <KidWorkshopsSection id="bookmarked" kid={kid} title="Épinglés" workshops={bookmarkedWorkshops} />
+        <KidWorkshopsSection
+          id="bookmarked"
+          kid={kid}
+          title="Épinglés"
+          workshops={bookmarkedWorkshops}
+        />
 
-        <KidWorkshopsSection id="in-progress" kid={kid} title="Ateliers en cours" workshops={inProgressWorkshops} />
+        <KidWorkshopsSection
+          id="in-progress"
+          kid={kid}
+          title="Ateliers en cours"
+          workshops={inProgressWorkshops}
+        />
 
-        <KidWorkshopsSection id="available" kid={kid} title="Ateliers à commencer" workshops={availableWorkshops} />
+        <KidWorkshopsSection
+          id="available"
+          kid={kid}
+          title="Ateliers à commencer"
+          workshops={availableWorkshops}
+        />
 
-        <KidWorkshopsSection id="validated" kid={kid} title="Ateliers validés" workshops={validatedWorkshops} />
+        <KidWorkshopsSection
+          id="validated"
+          kid={kid}
+          title="Ateliers validés"
+          workshops={validatedWorkshops}
+        />
       </div>
     </PageContainer>
   );
