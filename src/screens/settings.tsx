@@ -1,3 +1,4 @@
+import { generateZipAndDownload, readZip } from "@/backup";
 import { clearCache } from "@/cache";
 import { Button } from "@/components/Button";
 import { ButtonLink } from "@/components/ButtonLink";
@@ -18,6 +19,17 @@ export function Settings() {
       <div className="flex items-center justify-center gap-x-12">
         <Button onClick={confirmAndReset}>Reset data</Button>
         <ButtonLink to="/settings/cache">Cache manager</ButtonLink>
+        <Button onClick={generateZipAndDownload}>Download backup</Button>
+        <input
+          type="file"
+          accept=".zip"
+          onChange={async (event) => {
+            const file = event.target.files?.[0];
+            if (file) {
+              readZip(file);
+            }
+          }}
+        />
       </div>
     </PageContainer>
   );

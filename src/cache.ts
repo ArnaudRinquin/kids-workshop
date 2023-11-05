@@ -3,7 +3,7 @@ import { Maybe } from "./types";
 
 const CACHE_KEY = "k&w";
 
-async function getCache() {
+export async function getCache() {
   return await caches.open(CACHE_KEY);
 }
 
