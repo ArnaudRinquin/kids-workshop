@@ -7,8 +7,7 @@ import { useKids } from "@/dataStore";
 export default function Kids() {
   const kids = useKids();
   return (
-    <PageContainer>
-      <PageTitle backLink="/">Élèves</PageTitle>
+    <PageContainer header={<PageTitle backLink="/">Élèves</PageTitle>}>
       <CardGrid minItemWidth={200}>
         {kids.map((kid) => (
           <KidsCard

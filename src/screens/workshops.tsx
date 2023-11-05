@@ -7,8 +7,7 @@ import { useWorkshops } from "@/dataStore";
 export default function Workshops() {
   const workshops = useWorkshops();
   return (
-    <PageContainer>
-      <PageTitle backLink="/">Ateliers</PageTitle>
+    <PageContainer header={<PageTitle backLink="/">Ateliers</PageTitle>}>
       <CardGrid>
         {workshops.map((workshop) => (
           <WorkshopCard

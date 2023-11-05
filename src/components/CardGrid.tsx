@@ -1,6 +1,6 @@
 export function CardGrid({
   children,
-  minItemWidth = 300,
+  minItemWidth = 280,
 }: {
   children: React.ReactNode;
   minItemWidth?: number;

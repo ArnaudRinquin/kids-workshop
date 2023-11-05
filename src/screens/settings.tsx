@@ -14,8 +14,7 @@ export function Settings() {
     }
   };
   return (
-    <PageContainer>
-      <PageTitle backLink="/">Settings</PageTitle>
+    <PageContainer header={<PageTitle backLink="/">Settings</PageTitle>}>
       <div className="flex items-center justify-center gap-x-12">
         <Button onClick={confirmAndReset}>Reset data</Button>
         <ButtonLink to="/settings/cache">Cache manager</ButtonLink>
