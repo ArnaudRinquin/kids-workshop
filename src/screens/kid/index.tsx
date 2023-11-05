@@ -58,8 +58,8 @@ export default function KidPage() {
 
   return (
     <PageContainer>
-      <PageTitle backLink="/kids">
-        <>
+      <div className="sticky top-0 bg-white z-50">
+        <PageTitle backLink="/kids">
           {kid.name}
           <KidLevelChip level={kid.level} />
           <CachedImageInput
@@ -73,45 +73,43 @@ export default function KidPage() {
           >
             📸
           </CachedImageInput>
-        </>
-      </PageTitle>
+        </PageTitle>
 
-      <nav className="flex flex-row justify-between items-center">
-        <FilterLink href="#bookmarked">Épinglés</FilterLink>
-        <FilterLink href="#in-progress">En cours</FilterLink>
-        <FilterLink href="#available">À commencer</FilterLink>
-        <FilterLink href="#validated">Validés</FilterLink>
-      </nav>
-
-      <div>
-        <KidWorkshopsSection
-          id="bookmarked"
-          kid={kid}
-          title="Épinglés"
-          workshops={bookmarkedWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="in-progress"
-          kid={kid}
-          title="Ateliers en cours"
-          workshops={inProgressWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="available"
-          kid={kid}
-          title="Ateliers à commencer"
-          workshops={availableWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="validated"
-          kid={kid}
-          title="Ateliers validés"
-          workshops={validatedWorkshops}
-        />
+        <nav className="flex flex-row justify-between items-center">
+          <FilterLink href="#bookmarked">Épinglés</FilterLink>
+          <FilterLink href="#in-progress">En cours</FilterLink>
+          <FilterLink href="#available">À commencer</FilterLink>
+          <FilterLink href="#validated">Validés</FilterLink>
+        </nav>
       </div>
+
+      <KidWorkshopsSection
+        id="bookmarked"
+        kid={kid}
+        title="Épinglés"
+        workshops={bookmarkedWorkshops}
+      />
+
+      <KidWorkshopsSection
+        id="in-progress"
+        kid={kid}
+        title="Ateliers en cours"
+        workshops={inProgressWorkshops}
+      />
+
+      <KidWorkshopsSection
+        id="available"
+        kid={kid}
+        title="Ateliers à commencer"
+        workshops={availableWorkshops}
+      />
+
+      <KidWorkshopsSection
+        id="validated"
+        kid={kid}
+        title="Ateliers validés"
+        workshops={validatedWorkshops}
+      />
     </PageContainer>
   );
 }
