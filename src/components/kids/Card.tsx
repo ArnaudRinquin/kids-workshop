@@ -8,9 +8,6 @@ import { CachedCardImage } from "../Cache/Image";
 type Props = Kid;
 
 export function KidsCard(props: Props) {
-  if (props.photoUrl) {
-    console.log("props", props);
-  }
   return (
     <Link to={`/kids/${props.id}`}>
       <Card>

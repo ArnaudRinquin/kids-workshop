@@ -25,4 +25,5 @@ export type Progress = {
   success: Maybe<"a" | "b" | "c">;
   completion: Maybe<1 | 2>;
   validatedAt: Maybe<number>;
+  bookmarkedAt?: Maybe<number>;
 };

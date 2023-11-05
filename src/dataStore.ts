@@ -9,15 +9,20 @@ type State = {
   workshops: Workshop[];
   progresses: Progress[];
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
+  setBookmarkedAt: (args: {
+    kidId: string;
+    workshopId: string;
+    date?: number | null;
+  }) => void;
   setPresentedAt: (args: {
     kidId: string;
     workshopId: string;
-    date?: number;
+    date?: number | null;
   }) => void;
   setValidatedAt: (args: {
     kidId: string;
     workshopId: string;
-    date?: number;
+    date?: number | null;
   }) => void;
   setSuccess: (args: {
     kidId: string;
@@ -57,6 +62,30 @@ export const useStore = create(
             throw new Error(`Kid with id ${kidId} not found`);
           }
           return { ...state, kids };
+        });
+      },
+      setBookmarkedAt: ({ kidId, workshopId, date = Date.now() }) => {
+        set((state) => {
+          const progresses = state.progresses;
+          const progress = progresses.find(
+            (progress) =>
+              progress.kidId === kidId && progress.workshopId === workshopId
+          );
+          if (!progress) {
+            progresses.push({
+              id: uuid(),
+              kidId,
+              workshopId,
+              bookmarkedAt: date,
+              presentedAt: null,
+              validatedAt: null,
+              completion: null,
+              success: null,
+            });
+          } else {
+            progress.bookmarkedAt = date;
+          }
+          return { ...state, progresses };
         });
       },
       setPresentedAt: ({ kidId, workshopId, date = Date.now() }) => {
@@ -100,6 +129,9 @@ export const useStore = create(
               success: "a",
             });
           } else {
+            if (date) {
+              progress.bookmarkedAt = null;
+            }
             progress.presentedAt = progress.presentedAt ?? date;
             progress.validatedAt = date;
             progress.completion = 1;
@@ -201,10 +233,21 @@ export function useWorkshopsFromIds({
     .sort(sortWorkshops);
 }
 
+export function useBookmarkedWorkshopsForKid({ kidId }: { kidId: string }) {
+  const progresses = useProgressesForKid({ kidId });
+  const workshopIds = progresses
+    .filter((progress) => progress.bookmarkedAt)
+    .map(({ workshopId }) => workshopId);
+  return useWorkshopsFromIds({ workshopIds });
+}
+
 export function useWorkshopsInProgressForKid({ kidId }: { kidId: string }) {
   const progresses = useProgressesForKid({ kidId });
   const workshopIds = progresses
-    .filter((progress) => progress.presentedAt && !progress.validatedAt)
+    .filter(
+      (progress) =>
+        progress.presentedAt && !progress.validatedAt && !progress.bookmarkedAt
+    )
     .map(({ workshopId }) => workshopId);
   return useWorkshopsFromIds({ workshopIds });
 }
@@ -212,14 +255,14 @@ export function useWorkshopsInProgressForKid({ kidId }: { kidId: string }) {
 export function useValidatedWorkshopsForKid({ kidId }: { kidId: string }) {
   const progresses = useProgressesForKid({ kidId });
   const workshopIds = progresses
-    .filter((progress) => progress.validatedAt)
+    .filter((progress) => progress.validatedAt && !progress.bookmarkedAt)
     .map(({ workshopId }) => workshopId);
   return useWorkshopsFromIds({ workshopIds });
 }
 
 export function useStartableWorkshopsForKid({ kidId }: { kidId: string }) {
   const workshopIdsToExclude = useProgressesForKid({ kidId })
-    .filter((progress) => progress.presentedAt)
+    .filter((progress) => progress.presentedAt || progress.bookmarkedAt)
     .map(({ workshopId }) => workshopId);
   const workshops = useWorkshops();
   return workshops

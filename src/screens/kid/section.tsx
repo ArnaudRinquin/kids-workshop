@@ -1,110 +1,66 @@
-import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { CardGrid } from "@/components/CardGrid";
-import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { IconBookmark } from "@/components/Icons";
 import { ProgressBar } from "@/components/ProgressBar";
-import { KidLevelChip } from "@/components/kids/LevelChip";
 import { WorkshopCard } from "@/components/workshops/Card";
-import {
-  useStore,
-  useKid,
-  useProgressForKidAndWorkshop,
-  useSetKidPhotoUrl,
-  useWorkshopsInProgressForKid,
-  useStartableWorkshopsForKid,
-  useValidatedWorkshopsForKid,
-} from "@/dataStore";
+import { useProgressForKidAndWorkshop, useStore } from "@/dataStore";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
-import { useParams } from "react-router-dom";
+import classNames from "classnames";
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="text-2xl font-semibold my-2 text-gray-900">{children}</h2>
-  );
-}
-
-export default function KidPage() {
-  const params = useParams<{ kidId: string }>();
-  if (!params.kidId) {
-    throw new Error("Missing kidId");
-  }
-  const kid = useKid({ kidId: params.kidId });
-
-  const inProgressWorkshops = useWorkshopsInProgressForKid({
-    kidId: params.kidId,
-  });
-  const startableWorkshops = useStartableWorkshopsForKid({
-    kidId: params.kidId,
-  });
-  const validatedWorkshops = useValidatedWorkshopsForKid({
-    kidId: params.kidId,
-  });
-
-  const setKidPhoto = useSetKidPhotoUrl();
-
-  if (!kid) {
-    return <main>Enfant perdu 🚨</main>;
-  }
-
-  return (
-    <PageContainer>
-      <PageTitle backLink="/kids">
-        <>
-          {kid.name}
-          <KidLevelChip level={kid.level} />
-          <CachedImageInput
-            className="ml-auto"
-            onChange={(url) => {
-              console.log("url", url);
-              setKidPhoto({
-                photoUrl: url,
-                kidId: kid.id,
-              });
-            }}
-          >
-            📸
-          </CachedImageInput>
-        </>
-      </PageTitle>
-
-      <SectionTitle>Ateliers en cours</SectionTitle>
-      <CardGrid>
-        {inProgressWorkshops.map((workshop) => (
-          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
-        ))}
-      </CardGrid>
-
-      <SectionTitle>Ateliers disponibles</SectionTitle>
-      <CardGrid>
-        {startableWorkshops.map((workshop) => (
-          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
-        ))}
-      </CardGrid>
-
-      <SectionTitle>Ateliers validés</SectionTitle>
-      <CardGrid>
-        {validatedWorkshops.map((workshop) => (
-          <AvailableWorkshop key={workshop.id} workshop={workshop} kid={kid} />
-        ))}
-      </CardGrid>
-    </PageContainer>
-  );
-}
-
-function AvailableWorkshop({
-  kid,
-  workshop,
-}: {
+type KidWorkshopsSectionProps = {
   kid: Kid;
-  workshop: Workshop;
-}) {
+  workshops: Workshop[];
+  title: string;
+  id?: string;
+};
+
+export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
+  return (
+    <>
+      <SectionTitle id={props.id}>{props.title}</SectionTitle>
+      <CardGrid>
+        {props.workshops.map((workshop) => (
+          <WorkshopProgress
+            key={workshop.id}
+            workshop={workshop}
+            kid={props.kid}
+          />
+        ))}
+      </CardGrid>
+    </>
+  );
+}
+
+function SectionTitle({
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>) {
+  return (
+    <h2
+      className={classNames(
+        "text-2xl font-semibold my-2 text-gray-900",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function WorkshopProgress({ kid, workshop }: { kid: Kid; workshop: Workshop }) {
   const existingProgress = useProgressForKidAndWorkshop({
     kidId: kid.id,
     workshopId: workshop.id,
   });
 
-  const { setPresentedAt, setSuccess, setCompletion, setValidatedAt } =
-    useStore();
+  const {
+    setPresentedAt,
+    setSuccess,
+    setCompletion,
+    setValidatedAt,
+    setBookmarkedAt,
+  } = useStore();
 
   const successSteps = [
     {
@@ -156,7 +112,30 @@ function AvailableWorkshop({
   ];
 
   return (
-    <WorkshopCard {...workshop}>
+    <WorkshopCard
+      {...workshop}
+      titleControl={
+        <button
+          className="p-2 shrink-0"
+          onClick={() => {
+            setBookmarkedAt({
+              kidId: kid.id,
+              workshopId: workshop.id,
+              date: existingProgress?.bookmarkedAt ? null : Date.now(),
+            });
+          }}
+        >
+          <IconBookmark
+            className={{
+              "stroke-2": true,
+              "fill-red-400": existingProgress?.bookmarkedAt,
+              "fill-transparent": !existingProgress?.bookmarkedAt,
+              "stroke-red-400": true,
+            }}
+          />
+        </button>
+      }
+    >
       <LabeledDateInput
         label={"Présenté le : "}
         value={toInputDate(existingProgress?.presentedAt)}
@@ -168,6 +147,7 @@ function AvailableWorkshop({
           });
         }}
       />
+
       <ProgressBar
         steps={successSteps}
         currentStep={successToStep(existingProgress?.success)}
