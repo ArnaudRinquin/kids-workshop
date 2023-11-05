@@ -20,11 +20,20 @@ type FilterLinkProps = React.DetailedHTMLProps<
 >;
 const FilterLink = ({ className, ...props }: FilterLinkProps) => {
   const { hash } = useLocation();
+  const isActive = hash === props.href;
 
   return (
     <a
       {...props}
-      className={classNames(className, { underline: hash === props.href })}
+      className={classNames(
+        className,
+        "rounded-md px-3 py-2", // text-sm font-medium",
+        {
+          "bg-indigo-600 text-white": isActive,
+          "border border-white hover:border-gray-200 hover:bg-gray-200 text-indigo-600":
+            !isActive,
+        }
+      )}
     />
   );
 };
@@ -75,7 +84,7 @@ export default function KidPage() {
               📸
             </CachedImageInput>
           </PageTitle>
-          <nav className="flex flex-row justify-between items-center">
+          <nav className="flex flex-row items-center gap-2 my-4 flex-wrap">
             <FilterLink href="#bookmarked">Épinglés</FilterLink>
             <FilterLink href="#in-progress">En cours</FilterLink>
             <FilterLink href="#available">À commencer</FilterLink>
