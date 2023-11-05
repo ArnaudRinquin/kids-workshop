@@ -10,8 +10,16 @@ import {
   useValidatedWorkshopsForKid,
   useBookmarkedWorkshopsForKid,
 } from "@/dataStore";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { KidWorkshopsSection } from "./section";
+import classNames from "classnames";
+
+type FilterLinkProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
+const FilterLink = (props: FilterLinkProps) => {
+  const { hash } = useLocation();
+
+  return <a {...props} className={classNames({ underline: hash === props.href })} />;
+};
 
 export default function KidPage() {
   const params = useParams<{ kidId: string }>();
@@ -61,40 +69,20 @@ export default function KidPage() {
       </PageTitle>
 
       <nav className="flex flex-row justify-between items-center">
-        <a href="#bookmarked">Épinglés</a>
-        <a href="#in-progress">En cours</a>
-        <a href="#available">À commencer</a>
-        <a href="#validated">Validés</a>
+        <FilterLink href="#bookmarked">Épinglés</FilterLink>
+        <FilterLink href="#in-progress">En cours</FilterLink>
+        <FilterLink href="#available">À commencer</FilterLink>
+        <FilterLink href="#validated">Validés</FilterLink>
       </nav>
 
       <div>
-        <KidWorkshopsSection
-          id="bookmarked"
-          kid={kid}
-          title="Épinglés"
-          workshops={bookmarkedWorkshops}
-        />
+        <KidWorkshopsSection id="bookmarked" kid={kid} title="Épinglés" workshops={bookmarkedWorkshops} />
 
-        <KidWorkshopsSection
-          id="in-progress"
-          kid={kid}
-          title="Ateliers en cours"
-          workshops={inProgressWorkshops}
-        />
+        <KidWorkshopsSection id="in-progress" kid={kid} title="Ateliers en cours" workshops={inProgressWorkshops} />
 
-        <KidWorkshopsSection
-          id="available"
-          kid={kid}
-          title="Ateliers à commencer"
-          workshops={availableWorkshops}
-        />
+        <KidWorkshopsSection id="available" kid={kid} title="Ateliers à commencer" workshops={availableWorkshops} />
 
-        <KidWorkshopsSection
-          id="validated"
-          kid={kid}
-          title="Ateliers validés"
-          workshops={validatedWorkshops}
-        />
+        <KidWorkshopsSection id="validated" kid={kid} title="Ateliers validés" workshops={validatedWorkshops} />
       </div>
     </PageContainer>
   );
