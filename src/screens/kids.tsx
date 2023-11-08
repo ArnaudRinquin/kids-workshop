@@ -33,7 +33,7 @@ export default function Kids() {
   return (
     <PageContainer
       header={
-        <>
+        <div className="flex flex-wrap items-end justify-between">
           <PageTitle backLink="/">Élèves</PageTitle>
           <SectionNavBar>
             {categories.map((category) => (
@@ -45,7 +45,7 @@ export default function Kids() {
               </SectionListLink>
             ))}
           </SectionNavBar>
-        </>
+        </div>
       }
     >
       {categories.map((category) => (

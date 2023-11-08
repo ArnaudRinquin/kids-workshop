@@ -10,7 +10,7 @@ export function SectionNavBar({
   return (
     <nav
       className={classNames(
-        "flex flex-row items-center gap-2 my-4 flex-wrap",
+        "text-2xl sm:text-3xl flex flex-row items-center gap-4 my-4 flex-wrap",
         className
       )}
       {...props}

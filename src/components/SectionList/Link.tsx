@@ -14,15 +14,9 @@ export function SectionListLink({
   return (
     <a
       {...props}
-      className={classNames(
-        className,
-        "rounded-md px-3 py-2", // text-sm font-medium",
-        {
-          "bg-indigo-600 text-white": isActive,
-          "border border-white hover:border-gray-200 hover:bg-gray-200 text-indigo-600":
-            !isActive,
-        }
-      )}
+      className={classNames(className, "rounded-md text-blue-600 underline", {
+        "decoration-wavy": isActive,
+      })}
     />
   );
 }

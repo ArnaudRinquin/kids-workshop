@@ -25,6 +25,7 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
   if (!workshops.length) {
     return null;
   }
+  console.log("render");
   return (
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>

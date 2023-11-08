@@ -2,6 +2,7 @@ import { useInView } from "react-intersection-observer";
 
 export function SectionListWrapper({
   className,
+  setActiveSectionId,
   ...props
 }: React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -13,7 +14,7 @@ export function SectionListWrapper({
   const [ref] = useInView({
     onChange: (inView) => {
       if (inView) {
-        props.setActiveSectionId(props.id);
+        setActiveSectionId(props.id);
       }
     },
   });

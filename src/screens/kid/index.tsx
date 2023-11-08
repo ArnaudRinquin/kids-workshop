@@ -72,7 +72,7 @@ export default function KidPage() {
   return (
     <PageContainer
       header={
-        <>
+        <div className="flex flex-wrap items-end justify-between">
           <PageTitle backLink="/kids">
             {kid.name}
             <KidLevelChip level={kid.level} />
@@ -92,23 +92,25 @@ export default function KidPage() {
           <SectionNavBar>
             {categories.map((category) => (
               <SectionListLink
-                href={`#${category.id}`}
+                key={category.id}
+                href={`#${category.label}`}
                 isActive={category.id === activeSectionId}
               >
                 {category.label}
               </SectionListLink>
             ))}
           </SectionNavBar>
-        </>
+        </div>
       }
     >
       {categories.map((category) => (
         <SectionListWrapper
+          key={category.id}
           id={category.id}
           setActiveSectionId={setActiveSectionId}
         >
           <KidWorkshopsSection
-            id={category.id}
+            id={category.label}
             kid={kid}
             title={category.label}
             workshops={category.workshops}

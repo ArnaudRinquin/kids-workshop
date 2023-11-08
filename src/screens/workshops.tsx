@@ -21,7 +21,7 @@ export default function Workshops() {
   return (
     <PageContainer
       header={
-        <>
+        <div className="flex flex-wrap items-end justify-between">
           <PageTitle backLink="/">Ateliers</PageTitle>
           <SectionNavBar>
             {categories.map((category) => (
@@ -33,7 +33,7 @@ export default function Workshops() {
               </SectionListLink>
             ))}
           </SectionNavBar>
-        </>
+        </div>
       }
     >
       {categories.map((category) => (
