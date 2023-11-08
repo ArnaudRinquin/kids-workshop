@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  envPrefix: "KW_",
+  envPrefix: "MS_",
   plugins: [
     react(),
     VitePWA({
@@ -14,9 +14,10 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,png,jpg,jpeg,svg,json}"],
       },
       manifest: {
-        name: "Kids & Workshops",
-        short_name: "K&W",
-        description: "Utility app to handle kids and their favorites workshops",
+        name: "MonteSuivi",
+        short_name: "MonteSuivi",
+        description:
+          "Application de suivi de la progression des enfants dans un cadre Montessori",
         theme_color: "#ffffff",
         icons: [
           {

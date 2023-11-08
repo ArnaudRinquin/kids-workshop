@@ -1,7 +1,7 @@
 import React from "react";
 import { Maybe } from "./types";
 
-const CACHE_KEY = "k&w";
+const CACHE_KEY = "ms";
 
 export async function getCache() {
   return await caches.open(CACHE_KEY);

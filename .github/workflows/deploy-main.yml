@@ -19,7 +19,7 @@ jobs:
           npm run build -- --base /monte-suivi/
           cp dist/index.html dist/404.html
         env:
-          KW_BASENAME: /monte-suivi
+          MS_BASENAME: /monte-suivi
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

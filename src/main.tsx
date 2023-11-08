@@ -8,7 +8,7 @@ import Workshop from "./screens/workshop";
 import { Settings } from "./screens/settings";
 import { CacheManager } from "./screens/cache-manager";
 
-const basename = import.meta.env.KW_BASENAME ?? "/";
+const basename = import.meta.env.MS_BASENAME ?? "/";
 
 const router = createBrowserRouter(
   [

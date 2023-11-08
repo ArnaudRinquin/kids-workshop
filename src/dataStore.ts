@@ -192,7 +192,7 @@ export const useStore = create(
       },
     }),
     {
-      name: "k&w",
+      name: "ms",
     }
   )
 );
