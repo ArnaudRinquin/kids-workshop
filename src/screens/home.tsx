@@ -9,7 +9,7 @@ export default function Home() {
     <PageContainer
       header={
         <PageTitle>
-          Élèves & Ateliers<Link to="/settings">⚙️</Link>
+          MonteSuivi<Link to="/settings">⚙️</Link>
         </PageTitle>
       }
     >
