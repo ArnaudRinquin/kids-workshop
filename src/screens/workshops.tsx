@@ -1,24 +1,50 @@
 import { CardGrid } from "@/components/CardGrid";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
+import { SectionTitle } from "@/components/SectionTitle";
 import { WorkshopCard } from "@/components/workshops/Card";
-import { useWorkshops } from "@/dataStore";
+import {
+  useCategories,
+  useCategory,
+  useWorkshopsFromCategory,
+} from "@/dataStore";
+import { Category } from "@/types";
 
 export default function Workshops() {
-  const workshops = useWorkshops();
+  const categories = useCategories();
   return (
     <PageContainer header={<PageTitle backLink="/">Ateliers</PageTitle>}>
-      <CardGrid>
-        {workshops.map((workshop) => (
-          <WorkshopCard
-            key={workshop.id}
-            id={workshop.id}
-            name={workshop.name}
-            difficulty={workshop.difficulty}
-            photoUrl={workshop.photoUrl}
-          />
-        ))}
-      </CardGrid>
+      {categories.map((category) => (
+        <CategorySection key={category.id} categoryId={category.id} />
+      ))}
     </PageContainer>
   );
+}
+
+export function CategorySection({
+  categoryId,
+}: {
+  categoryId: Category["id"];
+}) {
+  const category = useCategory({ categoryId });
+  const workshops = useWorkshopsFromCategory({ categoryId });
+  if (workshops.length === 0 || !category) {
+    return null;
+  }
+  return (
+    <>
+      <SectionTitle id={makeCategorySectionId({ categoryId })}>
+        {category.name}
+      </SectionTitle>
+      <CardGrid>
+        {workshops.map((workshop) => (
+          <WorkshopCard key={workshop.id} {...workshop} />
+        ))}
+      </CardGrid>
+    </>
+  );
+}
+
+function makeCategorySectionId({ categoryId }: { categoryId: Category["id"] }) {
+  return `category-${categoryId}`;
 }

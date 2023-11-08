@@ -2,10 +2,10 @@ import Card from "@/components/Card";
 import { CardGrid } from "@/components/CardGrid";
 import { IconBookmark } from "@/components/Icons";
 import { ProgressBar } from "@/components/ProgressBar";
+import { SectionTitle } from "@/components/SectionTitle";
 import { WorkshopCard } from "@/components/workshops/Card";
 import { useProgressForKidAndWorkshop, useStore } from "@/dataStore";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
-import classNames from "classnames";
 import React from "react";
 
 const ITEMS_PER_SHOW_MORE = 5;
@@ -48,24 +48,6 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
         )}
       </CardGrid>
     </>
-  );
-}
-
-function SectionTitle({
-  className,
-  ...props
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLHeadingElement>,
-  HTMLHeadingElement
->) {
-  return (
-    <h2
-      className={classNames(
-        "text-2xl font-semibold my-2 text-gray-900",
-        className
-      )}
-      {...props}
-    />
   );
 }
 

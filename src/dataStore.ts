@@ -1,6 +1,6 @@
 import initialData from "./data.json";
 import { v4 as uuid } from "uuid";
-import { Kid, Maybe, Progress, Workshop } from "./types";
+import { Category, Kid, Maybe, Progress, Workshop } from "./types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -8,6 +8,7 @@ type State = {
   kids: Kid[];
   workshops: Workshop[];
   progresses: Progress[];
+  categories: Category[];
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
   setBookmarkedAt: (args: {
     kidId: string;
@@ -45,6 +46,7 @@ export const useStore = create(
       kids: _d.kids,
       workshops: _d.workshops,
       progresses: _d.progresses,
+      categories: _d.categories,
       reset: () => {
         set({
           kids: _d.kids,
@@ -201,6 +203,25 @@ export function useKids() {
 
 export function useWorkshops() {
   return useStore((state) => state.workshops);
+}
+
+export function useWorkshopsFromCategory({
+  categoryId,
+}: {
+  categoryId: Category["id"];
+}) {
+  return useWorkshops().filter(
+    (workshop) => workshop.categoryId === categoryId
+  );
+}
+
+export function useCategories() {
+  return useStore((state) => state.categories);
+}
+
+export function useCategory({ categoryId }: { categoryId: Category["id"] }) {
+  const categories = useCategories();
+  return categories.find((category) => category.id === categoryId);
 }
 
 export function useProgresses() {
