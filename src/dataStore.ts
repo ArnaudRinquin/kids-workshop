@@ -201,6 +201,10 @@ export function useKids() {
   return useStore((state) => state.kids);
 }
 
+export function useKidsAtLevel({ level }: { level: Kid["level"] }) {
+  return useKids().filter((kid) => kid.level === level);
+}
+
 export function useWorkshops() {
   return useStore((state) => state.workshops);
 }
