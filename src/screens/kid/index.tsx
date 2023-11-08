@@ -10,33 +10,13 @@ import {
   useValidatedWorkshopsForKid,
   useBookmarkedWorkshopsForKid,
 } from "@/dataStore";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { KidWorkshopsSection } from "./section";
-import classNames from "classnames";
-
-type FilterLinkProps = React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
->;
-const FilterLink = ({ className, ...props }: FilterLinkProps) => {
-  const { hash } = useLocation();
-  const isActive = hash === props.href;
-
-  return (
-    <a
-      {...props}
-      className={classNames(
-        className,
-        "rounded-md px-3 py-2", // text-sm font-medium",
-        {
-          "bg-indigo-600 text-white": isActive,
-          "border border-white hover:border-gray-200 hover:bg-gray-200 text-indigo-600":
-            !isActive,
-        }
-      )}
-    />
-  );
-};
+import { SectionListLink } from "@/components/SectionList/Link";
+import { useActiveSectionTracker } from "@/components/SectionList/useActiveSectionSpy";
+import { SectionListWrapper } from "@/components/SectionList/Wrapper";
+import { Workshop } from "@/types";
+import { SectionNavBar } from "@/components/SectionList/NavBar";
 
 export default function KidPage() {
   const params = useParams<{ kidId: string }>();
@@ -60,6 +40,30 @@ export default function KidPage() {
   });
 
   const setKidPhoto = useSetKidPhotoUrl();
+  const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();
+
+  const categories: { id: string; label: string; workshops: Workshop[] }[] = [
+    {
+      id: "bookmarked",
+      label: "Épinglés",
+      workshops: bookmarkedWorkshops,
+    },
+    {
+      id: "in-progress",
+      label: "En cours",
+      workshops: inProgressWorkshops,
+    },
+    {
+      id: "available",
+      label: "À commencer",
+      workshops: availableWorkshops,
+    },
+    {
+      id: "validated",
+      label: "Validés",
+      workshops: validatedWorkshops,
+    },
+  ].filter((category) => category.workshops.length > 0);
 
   if (!kid) {
     return <main>Enfant perdu 🚨</main>;
@@ -85,44 +89,32 @@ export default function KidPage() {
               📸
             </CachedImageInput>
           </PageTitle>
-          <nav className="flex flex-row items-center gap-2 my-4 flex-wrap">
-            <FilterLink href="#bookmarked">Épinglés</FilterLink>
-            <FilterLink href="#in-progress">En cours</FilterLink>
-            <FilterLink href="#available">À commencer</FilterLink>
-            <FilterLink href="#validated">Validés</FilterLink>
-          </nav>
+          <SectionNavBar>
+            {categories.map((category) => (
+              <SectionListLink
+                href={`#${category.id}`}
+                isActive={category.id === activeSectionId}
+              >
+                {category.label}
+              </SectionListLink>
+            ))}
+          </SectionNavBar>
         </>
       }
     >
-      <div>
-        <KidWorkshopsSection
-          id="bookmarked"
-          kid={kid}
-          title="Épinglés"
-          workshops={bookmarkedWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="in-progress"
-          kid={kid}
-          title="Ateliers en cours"
-          workshops={inProgressWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="available"
-          kid={kid}
-          title="Ateliers à commencer"
-          workshops={availableWorkshops}
-        />
-
-        <KidWorkshopsSection
-          id="validated"
-          kid={kid}
-          title="Ateliers validés"
-          workshops={validatedWorkshops}
-        />
-      </div>
+      {categories.map((category) => (
+        <SectionListWrapper
+          id={category.id}
+          setActiveSectionId={setActiveSectionId}
+        >
+          <KidWorkshopsSection
+            id={category.id}
+            kid={kid}
+            title={category.label}
+            workshops={category.workshops}
+          />
+        </SectionListWrapper>
+      ))}
     </PageContainer>
   );
 }

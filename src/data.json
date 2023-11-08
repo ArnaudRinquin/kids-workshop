@@ -499,163 +499,163 @@
     {
       "id": "60",
       "name": "Les barres numériques de 1 à 10",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 60
     },
     {
       "id": "61",
       "name": "Les barrres numériques de 1 à 10 + chiffres",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 61
     },
     {
       "id": "62",
       "name": "Les petites barres numériques/les compléments à 10",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 62
     },
     {
       "id": "63",
       "name": "Les chiffres rugueux de 1 à 9",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 63
     },
     {
       "id": "64",
       "name": "Les fuseaux",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 64
     },
     {
       "id": "65",
       "name": "La mémoire des chiffres",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 65
     },
     {
       "id": "66",
       "name": "Association symbole-quantité",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 66
     },
     {
       "id": "67",
       "name": "Association symbole-quantité à distance",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 67
     },
     {
       "id": "68",
       "name": "Les jetons",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 68
     },
     {
       "id": "69",
       "name": "Les perles de Seguin de 1 à 9",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 69
     },
     {
       "id": "70",
       "name": "Coloriage du petit escalier de perles + les nombres > 10",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 70
     },
     {
       "id": "71",
       "name": "Les perles de Seguin de 11 à 19",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 71
     },
     {
       "id": "72",
       "name": "Les tables de Seguin #1 : de 11 à 19",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 72
     },
     {
       "id": "73",
       "name": "Coloriage perle de Seguin de 11 à 19",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 73
     },
     {
       "id": "74",
       "name": "Les tables de Seguin #2 de 10 à 90",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 74
     },
     {
       "id": "75",
       "name": "Les tables de Seguin #3 de 10 à 99",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 75
     },
     {
       "id": "76",
       "name": "Premières additions avec les perles de Seguin",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 76
     },
     {
       "id": "77",
       "name": "Les perles de Seguin de 10 à 90",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 77
     },
     {
       "id": "78",
       "name": "Le serpent positif",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 78
     },
     {
       "id": "79",
       "name": "Plateau #1 du système décimal",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 79
     },
     {
       "id": "80",
       "name": "Plateau #2 du système décimal",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 80
     },
     {
       "id": "81",
       "name": "Additions avec le matériel symbolique + tapis numérique",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 81
     },
     {
       "id": "82",
       "name": "Tableau de 100 : les nombres → 30",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 82
     },
     {
       "id": "83",
       "name": "Tableau de 100 : les nombres → 50",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 83
     },
     {
       "id": "84",
       "name": "Tableau de 100 : les nombres → 100",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 84
     },
     {
       "id": "85",
       "name": "Le tableau double-entrée",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 85
     },
     {
       "id": "86",
       "name": "Les pinces double-entrée",
-      "category": "3",
+      "categoryId": "3",
       "difficulty": 86
     },
     {
