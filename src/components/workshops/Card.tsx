@@ -3,6 +3,7 @@ import Card, { CardImage } from "../Card";
 import placeholderSrc from "./default-workshop.svg";
 import Chip, { ChipVariant } from "../Chip";
 import { Workshop } from "@/types";
+import { CachedCardImage } from "../Cache/Image";
 
 type Props = Workshop & {
   children?: React.ReactNode;
@@ -39,7 +40,11 @@ export function WorkshopCard(props: Props) {
         >
           Difficulté: {props.difficulty}
         </Chip>
-        <CardImage src={props.photoUrl ?? placeholderSrc} alt={props.name} />
+        {props.photoUrl ? (
+          <CachedCardImage src={props.photoUrl} alt={props.name} />
+        ) : (
+          <CardImage src={placeholderSrc} alt={props.name} />
+        )}
         {props.children}
       </div>
     </Card>
