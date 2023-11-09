@@ -1,26 +1,57 @@
 import PageTitle from "@/components/PageTitle";
 import "@/app.css";
-import { ButtonLink } from "@/components/ButtonLink";
 import { PageContainer } from "@/components/PageContainer";
 import { Link } from "react-router-dom";
+import { CardGrid } from "@/components/CardGrid";
+import Card, { CardImage } from "@/components/Card";
+import workshopPlaceholderSrc from "@/components/workshops/default-workshop.svg";
+import kidPlaceholderSrc from "@/components/kids/default-kid.svg";
 
 export default function Home() {
   return (
-    <PageContainer
-      header={
-        <PageTitle>
-          MonteSuivi<Link to="/settings">⚙️</Link>
-        </PageTitle>
-      }
-    >
-      <div className="flex items-center justify-center gap-x-12">
-        <ButtonLink className="grow" to="/kids">
-          Élèves
-        </ButtonLink>
-        <ButtonLink className="grow" to="/workshops">
-          Ateliers
-        </ButtonLink>
-      </div>
+    <PageContainer header={<PageTitle>MonteSuivi</PageTitle>}>
+      <CardGrid>
+        <Link to="/kids">
+          <Card>
+            <div className="p-6 text-center">
+              <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                Élèves
+              </h4>
+              <CardImage
+                src={kidPlaceholderSrc}
+                alt="illustration-des-eleves"
+              />
+            </div>
+          </Card>
+        </Link>
+
+        <Link to="/workshops">
+          <Card>
+            <div className="p-6 text-center">
+              <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                Ateliers
+              </h4>
+              <CardImage
+                src={workshopPlaceholderSrc}
+                alt="illustration-des-ateliers"
+              />
+            </div>
+          </Card>
+        </Link>
+
+        <Link to="/settings">
+          <Card>
+            <div className="p-6 text-center">
+              <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                Gestion
+              </h4>
+              <Card className="bg-white flex items-center justify-center m-4 h-40">
+                <div className="text-6xl ">⚙️</div>
+              </Card>
+            </div>
+          </Card>
+        </Link>
+      </CardGrid>
     </PageContainer>
   );
 }

@@ -1,9 +1,11 @@
 import { generateZipAndDownload, readZip } from "@/backup";
 import { clearCache } from "@/cache";
 import { Button } from "@/components/Button";
-import { ButtonLink } from "@/components/ButtonLink";
+import { ButtonLabel } from "@/components/Button/Label";
+import { ButtonLink } from "@/components/Button/Link";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
+import { SectionTitle } from "@/components/SectionTitle";
 import { useStore } from "@/dataStore";
 
 export function Settings() {
@@ -15,21 +17,30 @@ export function Settings() {
     }
   };
   return (
-    <PageContainer header={<PageTitle backLink="/">Settings</PageTitle>}>
-      <div className="flex items-center justify-center gap-x-12">
-        <Button onClick={confirmAndReset}>Reset data</Button>
-        <ButtonLink to="/settings/cache">Cache manager</ButtonLink>
-        <Button onClick={generateZipAndDownload}>Download backup</Button>
-        <input
-          type="file"
-          accept=".zip"
-          onChange={async (event) => {
-            const file = event.target.files?.[0];
-            if (file) {
-              readZip(file);
-            }
-          }}
-        />
+    <PageContainer header={<PageTitle backLink="/">Paramètres</PageTitle>}>
+      <div className="flex flex-col gap-y-5">
+        <SectionTitle>Sauvegarde 🛟</SectionTitle>
+        <Button onClick={generateZipAndDownload}>
+          Exporter une sauvegarde ⬇️
+        </Button>
+
+        <ButtonLabel>
+          Importer une sauvegarde ⬆️
+          <input
+            className="hidden"
+            type="file"
+            accept=".zip"
+            onChange={async (event) => {
+              const file = event.target.files?.[0];
+              if (file) {
+                readZip(file);
+              }
+            }}
+          />
+        </ButtonLabel>
+        <SectionTitle>Nettoyage 🧹</SectionTitle>
+        <Button onClick={confirmAndReset}>Reset</Button>
+        <ButtonLink to="/settings/cache">Cache inspector 🔎</ButtonLink>
       </div>
     </PageContainer>
   );
