@@ -3,12 +3,16 @@ import { v4 as uuid } from "uuid";
 import { Category, Kid, Maybe, Progress, Workshop } from "./types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 type State = {
   kids: Kid[];
   workshops: Workshop[];
   progresses: Progress[];
   categories: Category[];
+};
+
+type Actions = {
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
   setBookmarkedAt: (args: {
     kidId: string;
@@ -41,8 +45,8 @@ type State = {
 const _d = initialData as State;
 
 export const useStore = create(
-  persist<State>(
-    (set) => ({
+  persist(
+    immer<State & Actions>((set) => ({
       kids: _d.kids,
       workshops: _d.workshops,
       progresses: _d.progresses,
@@ -63,7 +67,6 @@ export const useStore = create(
           } else {
             throw new Error(`Kid with id ${kidId} not found`);
           }
-          return { ...state, kids };
         });
       },
       setBookmarkedAt: ({ kidId, workshopId, date = Date.now() }) => {
@@ -87,7 +90,6 @@ export const useStore = create(
           } else {
             progress.bookmarkedAt = date;
           }
-          return { ...state, progresses };
         });
       },
       setPresentedAt: ({ kidId, workshopId, date = Date.now() }) => {
@@ -110,7 +112,6 @@ export const useStore = create(
           } else {
             progress.presentedAt = date;
           }
-          return { ...state, progresses };
         });
       },
       setValidatedAt: ({ kidId, workshopId, date = Date.now() }) => {
@@ -139,7 +140,6 @@ export const useStore = create(
             progress.completion = 1;
             progress.success = "a";
           }
-          return { ...state, progresses };
         });
       },
       setSuccess: ({ kidId, workshopId, success }) => {
@@ -163,7 +163,6 @@ export const useStore = create(
             progress.presentedAt = progress.presentedAt ?? Date.now();
             progress.success = success;
           }
-          return { ...state, progresses };
         });
       },
       setCompletion: ({ kidId, workshopId, completion }) => {
@@ -187,10 +186,9 @@ export const useStore = create(
             progress.presentedAt = progress.presentedAt ?? Date.now();
             progress.completion = completion;
           }
-          return { ...state, progresses };
         });
       },
-    }),
+    })),
     {
       name: "ms",
     }
