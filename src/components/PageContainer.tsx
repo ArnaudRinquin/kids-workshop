@@ -13,7 +13,7 @@ export function PageContainer({
   return (
     <>
       <PWAHandler />
-      <div className="py-3 md:py-6 xl:py-10 max-h-screen overflow-hidden flex flex-col items-center">
+      <main className="py-3 md:py-6 xl:py-10 max-h-screen overflow-hidden flex flex-col items-center">
         <div className="px-3 md:px-6 xl:px-10 container shrink-0 grow-0">
           {header}
         </div>
@@ -25,7 +25,7 @@ export function PageContainer({
         >
           {children}
         </div>
-      </div>
+      </main>
     </>
   );
 }

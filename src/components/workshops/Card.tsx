@@ -33,12 +33,13 @@ export function WorkshopCard(props: Props) {
           </Link>
           {props.titleControl}
         </div>
+        <Chip
+          className="self-baseline"
+          variant={getVariableForDifficulty(props.difficulty)}
+        >
+          Difficulté: {props.difficulty}
+        </Chip>
         <CardImage src={props.photoUrl ?? placeholderSrc} alt={props.name} />
-        <div className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
-          <Chip variant={getVariableForDifficulty(props.difficulty)}>
-            Difficulté: {props.difficulty}
-          </Chip>
-        </div>
         {props.children}
       </div>
     </Card>

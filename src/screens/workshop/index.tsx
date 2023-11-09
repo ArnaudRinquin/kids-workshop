@@ -1,83 +1,81 @@
 import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
-import { KidLevelChip } from "@/components/kids/LevelChip";
-import {
-  useKid,
-  useSetKidPhotoUrl,
-  useWorkshopsInProgressForKid,
-  useStartableWorkshopsForKid,
-  useValidatedWorkshopsForKid,
-  useBookmarkedWorkshopsForKid,
-} from "@/dataStore";
-import { useParams } from "react-router-dom";
-import { KidWorkshopsSection } from "./section";
 import { SectionListLink } from "@/components/SectionList/Link";
-import { useActiveSectionTracker } from "@/components/SectionList/useActiveSectionSpy";
-import { SectionListWrapper } from "@/components/SectionList/Wrapper";
-import { Workshop } from "@/types";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
+import { SectionListWrapper } from "@/components/SectionList/Wrapper";
+import { useActiveSectionTracker } from "@/components/SectionList/useActiveSectionSpy";
+import {
+  useBookmarkedKidsForWorkshop,
+  useKidsInProgressForWorkshop,
+  useKidsStartableForWorkshop,
+  useKidsValidatedForWorkshop,
+  useSetWorkshopPhotoUrl,
+  useWorkshop,
+} from "@/dataStore";
+import { Kid } from "@/types";
+import { useParams } from "react-router-dom";
+import { WorkshopKidsSection } from "./section";
 import React from "react";
 
-export default function KidPage() {
-  const params = useParams<{ kidId: string }>();
-  if (!params.kidId) {
-    throw new Error("Missing kidId");
+export default function Workshop() {
+  const params = useParams<{ workshopId: string }>();
+  if (!params.workshopId) {
+    throw new Error("Missing workshopId");
   }
-  const kid = useKid({ kidId: params.kidId });
+  const workshop = useWorkshop({ workshopId: params.workshopId });
+  const setWorkshopPhoto = useSetWorkshopPhotoUrl();
 
-  const bookmarkedWorkshops = useBookmarkedWorkshopsForKid({
-    kidId: params.kidId,
-  });
-
-  const inProgressWorkshops = useWorkshopsInProgressForKid({
-    kidId: params.kidId,
-  });
-  const availableWorkshops = useStartableWorkshopsForKid({
-    kidId: params.kidId,
-  });
-  const validatedWorkshops = useValidatedWorkshopsForKid({
-    kidId: params.kidId,
-  });
-
-  const setKidPhoto = useSetKidPhotoUrl();
   const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();
 
-  // we don't want these categories to change until we navigate to another kid or page
+  const bookmarkedKids = useBookmarkedKidsForWorkshop({
+    workshopId: params.workshopId,
+  });
+  const inProgressKids = useKidsInProgressForWorkshop({
+    workshopId: params.workshopId,
+  });
+  const availableKids = useKidsStartableForWorkshop({
+    workshopId: params.workshopId,
+  });
+  const validatedKids = useKidsValidatedForWorkshop({
+    workshopId: params.workshopId,
+  });
+
+  // we don't want these categories to change until we navigate to another workshop or page
   // so we memoize the results with an empty dependency array
-  const categories: { id: string; label: string; workshops: Workshop[] }[] =
+  const categories: { id: string; label: string; kids: Kid[] }[] =
     React.useMemo(
       () =>
         [
           {
             id: "bookmarked",
             label: "Épinglés",
-            workshops: bookmarkedWorkshops,
+            kids: bookmarkedKids,
           },
           {
             id: "in-progress",
             label: "En cours",
-            workshops: inProgressWorkshops,
+            kids: inProgressKids,
           },
           {
             id: "available",
-            label: "À commencer",
-            workshops: availableWorkshops,
+            label: "Disponibles",
+            kids: availableKids,
           },
           {
             id: "validated",
             label: "Validés",
-            workshops: validatedWorkshops,
+            kids: validatedKids,
           },
-        ].filter((category) => category.workshops.length > 0),
+        ].filter((category) => category.kids.length),
       // eslint-disable-next-line react-hooks/exhaustive-deps
       []
     );
 
-  if (!kid) {
+  if (!workshop) {
     return (
       <PageContainer>
-        <PageTitle backLink="/kids">Enfant perdu 🚨</PageTitle>
+        <PageTitle backLink="/workshops">Atelier non trouvé 🚨</PageTitle>
       </PageContainer>
     );
   }
@@ -87,15 +85,14 @@ export default function KidPage() {
       header={
         <div className="flex flex-wrap items-end justify-between">
           <PageTitle backLink="/kids">
-            {kid.name}
-            <KidLevelChip level={kid.level} />
+            {workshop.name}
             <CachedImageInput
               prefix="/kids"
               className="ml-auto"
               onChange={(url) => {
-                setKidPhoto({
+                setWorkshopPhoto({
                   photoUrl: url,
-                  kidId: kid.id,
+                  workshopId: workshop.id,
                 });
               }}
             >
@@ -122,11 +119,11 @@ export default function KidPage() {
           id={category.id}
           setActiveSectionId={setActiveSectionId}
         >
-          <KidWorkshopsSection
+          <WorkshopKidsSection
             id={category.label}
-            kid={kid}
+            workshop={workshop}
             title={category.label}
-            workshops={category.workshops}
+            kids={category.kids}
           />
         </SectionListWrapper>
       ))}

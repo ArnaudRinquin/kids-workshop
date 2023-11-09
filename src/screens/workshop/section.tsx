@@ -1,27 +1,26 @@
 import Card from "@/components/Card";
 import { CardGrid } from "@/components/CardGrid";
 import { SectionTitle } from "@/components/SectionTitle";
-import { BookmarkButton } from "@/components/progress/BookmarkButton";
+import { KidsCard } from "@/components/kids/Card";
 import { ProgressCardContent } from "@/components/progress/CardContent";
-import { WorkshopCard } from "@/components/workshops/Card";
 import { Kid, Workshop } from "@/types";
 import React from "react";
 
 const ITEMS_PER_SHOW_MORE = 5;
 
-type KidWorkshopsSectionProps = {
-  kid: Kid;
-  workshops: Workshop[];
+type WorkshopKidsSectionProps = {
+  workshop: Workshop;
+  kids: Kid[];
   title: string;
   id?: string;
 };
 
-export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
+export function WorkshopKidsSection(props: WorkshopKidsSectionProps) {
   const [show, setShowMore] = React.useState(1);
   const showMore = () => setShowMore(show + 1);
-  const hasMore = show * ITEMS_PER_SHOW_MORE < props.workshops.length;
-  const workshops = props.workshops.slice(0, show * ITEMS_PER_SHOW_MORE);
-  if (!workshops.length) {
+  const hasMore = show * ITEMS_PER_SHOW_MORE < props.kids.length;
+  const kids = props.kids.slice(0, show * ITEMS_PER_SHOW_MORE);
+  if (!kids.length) {
     return null;
   }
 
@@ -29,19 +28,14 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
       <CardGrid>
-        {workshops.map((workshop) => (
-          <WorkshopCard
-            {...workshop}
-            titleControl={
-              <BookmarkButton kidId={props.kid.id} workshopId={workshop.id} />
-            }
-          >
+        {kids.map((kid) => (
+          <KidsCard {...kid}>
             <ProgressCardContent
-              key={workshop.id}
-              workshop={workshop}
-              kid={props.kid}
+              key={kid.id}
+              workshop={props.workshop}
+              kid={kid}
             />
-          </WorkshopCard>
+          </KidsCard>
         ))}
         {hasMore && (
           <Card className="flex items-center justify-center">

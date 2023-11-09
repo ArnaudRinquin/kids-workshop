@@ -14,6 +14,10 @@ type State = {
 
 type Actions = {
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
+  setWorkshopPhotoUrl: (args: {
+    workshopId: string;
+    photoUrl: Maybe<string>;
+  }) => void;
   setBookmarkedAt: (args: {
     kidId: string;
     workshopId: string;
@@ -66,6 +70,19 @@ export const useStore = create(
             kid.photoUrl = photoUrl;
           } else {
             throw new Error(`Kid with id ${kidId} not found`);
+          }
+        });
+      },
+      setWorkshopPhotoUrl: ({ workshopId, photoUrl }) => {
+        set((state) => {
+          const workshops = state.workshops;
+          const workshop = workshops.find(
+            (workshop) => workshop.id === workshopId
+          );
+          if (workshop) {
+            workshop.photoUrl = photoUrl;
+          } else {
+            throw new Error(`Workshop with id ${workshopId} not found`);
           }
         });
       },
@@ -245,52 +262,133 @@ export function useProgressesForKid({ kidId }: { kidId: string }) {
   return progresses.filter((progress) => progress.kidId === kidId);
 }
 
+export function useProgressesForWorkshop({
+  workshopId,
+}: {
+  workshopId: string;
+}) {
+  const progresses = useProgresses();
+  return progresses.filter((progress) => progress.workshopId === workshopId);
+}
+
+export function useKidsFromIds({
+  kidIds,
+  sort = sortKidsByDescLevel,
+}: {
+  kidIds: string[];
+  sort?: (a: Kid, b: Kid) => number;
+}) {
+  const kids = useKids();
+  return kids.filter((kid) => kidIds.includes(kid.id)).sort(sort);
+}
+
 export function useWorkshopsFromIds({
   workshopIds,
+  sort = sortWorkshopsByAscDifficulty,
 }: {
   workshopIds: string[];
+  sort?: (a: Workshop, b: Workshop) => number;
 }) {
   const workshops = useWorkshops();
   return workshops
     .filter((workshop) => workshopIds.includes(workshop.id))
-    .sort(sortWorkshops);
+    .sort(sort);
+}
+
+function filterBookmarked(progress: Progress) {
+  return progress.bookmarkedAt;
 }
 
 export function useBookmarkedWorkshopsForKid({ kidId }: { kidId: string }) {
   const progresses = useProgressesForKid({ kidId });
   const workshopIds = progresses
-    .filter((progress) => progress.bookmarkedAt)
+    .filter(filterBookmarked)
     .map(({ workshopId }) => workshopId);
   return useWorkshopsFromIds({ workshopIds });
+}
+
+export function useBookmarkedKidsForWorkshop({
+  workshopId,
+}: {
+  workshopId: string;
+}) {
+  const progresses = useProgressesForWorkshop({ workshopId });
+  const kidIds = progresses.filter(filterBookmarked).map(({ kidId }) => kidId);
+  return useKidsFromIds({ kidIds });
+}
+
+function filterInProgress(progress: Progress) {
+  return (
+    progress.presentedAt && !progress.validatedAt && !progress.bookmarkedAt
+  );
 }
 
 export function useWorkshopsInProgressForKid({ kidId }: { kidId: string }) {
   const progresses = useProgressesForKid({ kidId });
   const workshopIds = progresses
-    .filter(
-      (progress) =>
-        progress.presentedAt && !progress.validatedAt && !progress.bookmarkedAt
-    )
+    .filter(filterInProgress)
     .map(({ workshopId }) => workshopId);
   return useWorkshopsFromIds({ workshopIds });
+}
+
+export function useKidsInProgressForWorkshop({
+  workshopId,
+}: {
+  workshopId: string;
+}) {
+  const progresses = useProgressesForWorkshop({ workshopId });
+  const kidIds = progresses.filter(filterInProgress).map(({ kidId }) => kidId);
+  return useKidsFromIds({ kidIds });
+}
+
+function filterValidated(progress: Progress) {
+  return progress.validatedAt && !progress.bookmarkedAt;
 }
 
 export function useValidatedWorkshopsForKid({ kidId }: { kidId: string }) {
   const progresses = useProgressesForKid({ kidId });
   const workshopIds = progresses
-    .filter((progress) => progress.validatedAt && !progress.bookmarkedAt)
+    .filter(filterValidated)
     .map(({ workshopId }) => workshopId);
   return useWorkshopsFromIds({ workshopIds });
 }
 
+export function useKidsValidatedForWorkshop({
+  workshopId,
+}: {
+  workshopId: string;
+}) {
+  const progresses = useProgressesForWorkshop({ workshopId });
+  const kidIds = progresses.filter(filterValidated).map(({ kidId }) => kidId);
+  return useKidsFromIds({ kidIds });
+}
+
 export function useStartableWorkshopsForKid({ kidId }: { kidId: string }) {
   const workshopIdsToExclude = useProgressesForKid({ kidId })
-    .filter((progress) => progress.presentedAt || progress.bookmarkedAt)
+    .filter(function (progress) {
+      return progress.presentedAt || progress.bookmarkedAt;
+    })
     .map(({ workshopId }) => workshopId);
   const workshops = useWorkshops();
   return workshops
     .filter((workshop) => !workshopIdsToExclude.includes(workshop.id))
-    .sort(sortWorkshops);
+    .sort(sortWorkshopsByAscDifficulty);
+}
+
+export function useKidsStartableForWorkshop({
+  workshopId,
+}: {
+  workshopId: string;
+}) {
+  const kidIdsToExclude = useProgressesForWorkshop({ workshopId })
+    .filter(function (progress) {
+      return progress.presentedAt || progress.bookmarkedAt;
+    })
+    .map(({ kidId }) => kidId);
+  const kids = useKids();
+  return kids
+    .filter((kid) => !kidIdsToExclude.includes(kid.id))
+    .sort(sortKidsByDescLevel);
 }
 
 export function useProgressForKidAndWorkshop({
@@ -310,6 +408,20 @@ export function useSetKidPhotoUrl() {
   return useStore((state) => state.setKidPhotoUrl);
 }
 
-export function sortWorkshops(a: Workshop, b: Workshop) {
+export function useSetWorkshopPhotoUrl() {
+  return useStore((state) => state.setWorkshopPhotoUrl);
+}
+
+export function sortWorkshopsByAscDifficulty(a: Workshop, b: Workshop) {
   return a.difficulty - b.difficulty;
+}
+
+const KidLevelToScore = {
+  beginner: 1,
+  intermediate: 2,
+  advanced: 3,
+};
+
+export function sortKidsByDescLevel(a: Kid, b: Kid) {
+  return KidLevelToScore[b.level] - KidLevelToScore[a.level];
 }

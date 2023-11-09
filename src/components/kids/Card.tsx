@@ -5,26 +5,27 @@ import { Kid } from "@/types";
 import { KidLevelChip } from "./LevelChip";
 import { CachedCardImage } from "../Cache/Image";
 
-type Props = Kid;
+type Props = Kid & {
+  children?: React.ReactNode;
+  titleControl?: React.ReactNode;
+};
 
 export function KidsCard(props: Props) {
   return (
-    <Link to={`/kids/${props.id}`}>
-      <Card>
-        <div className="p-6 text-center">
-          <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-            {props.name}
+    <Card>
+      <div className="p-4 gap-4 flex flex-col">
+        <Link to={`/kids/${props.id}`}>
+          <h4 className="flex font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased items-center justify-between">
+            {props.name} <KidLevelChip level={props.level} />
           </h4>
-          {props.photoUrl ? (
-            <CachedCardImage src={props.photoUrl} alt={props.name} />
-          ) : (
-            <CardImage src={placeholderSrc} alt={props.name} />
-          )}
-          <p className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
-            <KidLevelChip level={props.level} />
-          </p>
-        </div>
-      </Card>
-    </Link>
+        </Link>
+        {props.photoUrl ? (
+          <CachedCardImage src={props.photoUrl} alt={props.name} />
+        ) : (
+          <CardImage src={placeholderSrc} alt={props.name} />
+        )}
+        {props.children}
+      </div>
+    </Card>
   );
 }
