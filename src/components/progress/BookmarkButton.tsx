@@ -1,12 +1,12 @@
 import { IconBookmark } from "../Icons";
 import { useProgressForKidAndWorkshop, useStore } from "@/dataStore";
 
-type BookmarkedButtonProps = {
+type BookmarkButtonProps = {
   kidId: string;
   workshopId: string;
 };
 
-export function BookmarkButton({ kidId, workshopId }: BookmarkedButtonProps) {
+export function BookmarkButton({ kidId, workshopId }: BookmarkButtonProps) {
   const { bookmarkedAt } =
     useProgressForKidAndWorkshop({
       kidId,
