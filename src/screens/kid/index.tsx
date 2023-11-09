@@ -17,6 +17,7 @@ import { useActiveSectionTracker } from "@/components/SectionList/useActiveSecti
 import { SectionListWrapper } from "@/components/SectionList/Wrapper";
 import { Workshop } from "@/types";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
+import React from "react";
 
 export default function KidPage() {
   const params = useParams<{ kidId: string }>();
@@ -42,28 +43,36 @@ export default function KidPage() {
   const setKidPhoto = useSetKidPhotoUrl();
   const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();
 
-  const categories: { id: string; label: string; workshops: Workshop[] }[] = [
-    {
-      id: "bookmarked",
-      label: "Épinglés",
-      workshops: bookmarkedWorkshops,
-    },
-    {
-      id: "in-progress",
-      label: "En cours",
-      workshops: inProgressWorkshops,
-    },
-    {
-      id: "available",
-      label: "À commencer",
-      workshops: availableWorkshops,
-    },
-    {
-      id: "validated",
-      label: "Validés",
-      workshops: validatedWorkshops,
-    },
-  ].filter((category) => category.workshops.length > 0);
+  // we don't want these categories to change until we navigate to another kid or page
+  // so we memoize the results with an empty dependency array
+  const categories: { id: string; label: string; workshops: Workshop[] }[] =
+    React.useMemo(
+      () =>
+        [
+          {
+            id: "bookmarked",
+            label: "Épinglés",
+            workshops: bookmarkedWorkshops,
+          },
+          {
+            id: "in-progress",
+            label: "En cours",
+            workshops: inProgressWorkshops,
+          },
+          {
+            id: "available",
+            label: "À commencer",
+            workshops: availableWorkshops,
+          },
+          {
+            id: "validated",
+            label: "Validés",
+            workshops: validatedWorkshops,
+          },
+        ].filter((category) => category.workshops.length > 0),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      []
+    );
 
   if (!kid) {
     return <main>Enfant perdu 🚨</main>;
