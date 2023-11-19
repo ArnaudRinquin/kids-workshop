@@ -13,16 +13,15 @@ export function PageContainer({
   return (
     <>
       <PWAHandler />
-      <main className="py-3 md:py-6 xl:py-10 max-h-screen overflow-hidden flex flex-col items-center">
-        <div className="px-3 md:px-6 xl:px-10 container shrink-0 grow-0">
-          {header}
-        </div>
-        <div
-          className={classNames(
-            "px-3 md:px-6 xl:px-10 container shrink-1 grow-1 overflow-y-auto",
-            className
-          )}
-        >
+      <main
+        className="p-3 md:p-6 xl:p-10 max-h-screen container overflow-hidden grid mx-auto"
+        style={{
+          gridTemplateRows: "auto 1fr",
+          gridTemplateColumns: "1fr",
+        }}
+      >
+        <div className="">{header}</div>
+        <div className={classNames("overflow-y-auto", className)}>
           {children}
         </div>
       </main>
