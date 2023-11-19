@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { levelColorMap } from "./levelColorMap";
 
 export type ChipVariant = "green" | "yellow" | "red";
 
@@ -8,13 +9,6 @@ type ChipProps = {
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >;
-
-// TODO: let's unify the "level/difficulty" type on kids and workshops.
-const levelColorMap: Record<ChipVariant, string> = {
-  green: "bg-green-500",
-  yellow: "bg-yellow-500",
-  red: "bg-red-500",
-};
 
 export default function Chip({ className, ...props }: ChipProps) {
   const bgColor = levelColorMap[props.variant];
