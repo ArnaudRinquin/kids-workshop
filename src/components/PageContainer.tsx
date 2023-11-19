@@ -5,23 +5,28 @@ export function PageContainer({
   children,
   header,
   className,
+  containerRef,
 }: {
   children: React.ReactNode;
   header?: React.ReactNode;
   className?: string;
+  containerRef?: React.RefObject<HTMLDivElement>;
 }) {
   return (
     <>
       <PWAHandler />
       <main
-        className="p-3 md:p-6 xl:p-10 max-h-screen container overflow-hidden grid mx-auto"
+        className="p-3 sm:p-6 max-h-screen overflow-hidden grid"
         style={{
           gridTemplateRows: "auto 1fr",
           gridTemplateColumns: "1fr",
         }}
       >
         <div className="">{header}</div>
-        <div className={classNames("overflow-y-auto", className)}>
+        <div
+          ref={containerRef}
+          className={classNames("overflow-y-auto", className)}
+        >
           {children}
         </div>
       </main>

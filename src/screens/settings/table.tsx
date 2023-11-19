@@ -5,69 +5,117 @@ import { ProgressCardContent } from "@/components/progress/CardContent";
 import { useKids, useWorkshops } from "@/dataStore";
 import { Kid, Workshop } from "@/types";
 import classNames from "classnames";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import React, { useRef } from "react";
 
 const CELL_CLASSES = "border border-slate-400 avoid-page-break";
 
 export function Table() {
-  const workshops = useWorkshops().slice(10);
-  const kids = useKids().slice(5);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const workshops = useWorkshops();
+  const kids = useKids();
+
+  const virtualizer = useVirtualizer({
+    count: workshops.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 220,
+    overscan: 2,
+  });
+
   return (
     <PageContainer
       header={<PageTitle backLink="/settings">Vue tableau</PageTitle>}
+      containerRef={parentRef}
     >
-      <table
-        className={classNames(
-          CELL_CLASSES,
-          "overflow-auto relative table-auto border-separate border-spacing-0"
-        )}
+      <div
+        className="relative"
+        style={{ height: `${virtualizer.getTotalSize()}px` }}
       >
-        <thead>
-          <tr>
-            <th
-              className={classNames(
-                CELL_CLASSES,
-                "z-20 sticky left-0 top-0 bg-white border"
-              )}
-            ></th>
-            {workshops.map((workshop) => (
+        <table
+          className={classNames(
+            CELL_CLASSES,
+            "table-fixed border-separate border-spacing-0"
+          )}
+        >
+          <thead>
+            <tr>
               <th
-                key={workshop.id}
                 className={classNames(
-                  "z-10 sticky top-0 bg-white",
-                  CELL_CLASSES
+                  CELL_CLASSES,
+                  "z-20 sticky left-0 top-0 bg-white border"
                 )}
               >
-                {workshop.name}
+                <div className="w-32" />
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {kids.map((kid) => (
-            <Row key={kid.id} kid={kid} workshops={workshops} />
-          ))}
-        </tbody>
-      </table>
+              {kids.map((kid) => (
+                <th
+                  key={kid.id}
+                  className={classNames(
+                    "z-10 sticky top-0 bg-white",
+                    CELL_CLASSES
+                  )}
+                >
+                  {kid.name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {virtualizer.getVirtualItems().map((virtualRow, index) => {
+              const workshop = workshops[virtualRow.index];
+              return (
+                <Row
+                  key={workshop.id}
+                  kids={kids}
+                  workshop={workshop}
+                  style={{
+                    height: `${virtualRow.size}px`,
+                    transform: `translateY(${
+                      virtualRow.start - index * virtualRow.size
+                    }px)`,
+                  }}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </PageContainer>
   );
 }
 
-export function Row({ kid, workshops }: { kid: Kid; workshops: Workshop[] }) {
+export function Row({
+  kids,
+  workshop,
+  ...props
+}: {
+  kids: Kid[];
+  workshop: Workshop;
+} & React.HTMLAttributes<HTMLTableRowElement>) {
   return (
-    <tr>
-      <th className={classNames(CELL_CLASSES, "z-10 sticky left-0 bg-white")}>
-        {kid.name}
+    <tr {...props}>
+      <th
+        className={classNames(CELL_CLASSES, "z-10 sticky left-0 bg-white w-64")}
+      >
+        {workshop.name}
       </th>
-      {workshops.map((workshop) => (
-        <Cell key={workshop.id} kid={kid} workshop={workshop} />
+      {kids.map((kid) => (
+        <Cell key={kid.id} kid={kid} workshop={workshop} />
       ))}
     </tr>
   );
 }
 
-export function Cell({ kid, workshop }: { kid: Kid; workshop: Workshop }) {
+export function Cell({
+  kid,
+  workshop,
+  ...props
+}: {
+  kid: Kid;
+  workshop: Workshop;
+} & React.HTMLAttributes<HTMLTableCellElement>) {
   return (
-    <td className={classNames(CELL_CLASSES, "p-2")}>
+    <td {...props} className={classNames(props.className, CELL_CLASSES, "p-2")}>
       <BookmarkButton kidId={kid.id} workshopId={workshop.id} />
       <ProgressCardContent kid={kid} workshop={workshop} />
     </td>

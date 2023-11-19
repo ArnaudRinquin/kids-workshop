@@ -17,6 +17,9 @@ export function SectionListLink({
       className={classNames(className, "rounded-md text-blue-600 underline", {
         "decoration-wavy": isActive,
       })}
+      style={{
+        textDecorationSkipInk: "none",
+      }}
     />
   );
 }
