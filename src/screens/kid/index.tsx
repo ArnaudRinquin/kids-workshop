@@ -90,7 +90,6 @@ export default function KidPage() {
             {kid.name}
             <KidLevelChip level={kid.level} />
             <CachedImageInput
-              prefix="/kids"
               className="ml-auto"
               onChange={(url) => {
                 setKidPhoto({

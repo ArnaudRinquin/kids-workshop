@@ -23,11 +23,8 @@ export function CacheManager() {
         onChange={async (event) => {
           const file = event.target.files?.[0];
           if (file) {
-            const dataURL = URL.createObjectURL(file);
-            const url = `/${uuid()}.png`;
-            await saveToCache({
-              dataURL,
-              url,
+            const url = await saveToCache({
+              file,
             });
             setKey(url);
           }

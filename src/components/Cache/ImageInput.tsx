@@ -1,16 +1,13 @@
-import { v4 as uuid } from "uuid";
 import { saveToCache } from "@/cache";
 
 export function CachedImageInput({
   onChange,
   children = "Take a picture",
   className,
-  prefix,
 }: {
   onChange: (url: string) => void;
   children?: React.ReactNode;
   className?: string;
-  prefix?: `/${string}`;
 }) {
   return (
     <>
@@ -26,11 +23,8 @@ export function CachedImageInput({
         onChange={async (event) => {
           const file = event.target.files?.[0];
           if (file) {
-            const dataURL = URL.createObjectURL(file);
-            const url = `${prefix}/${uuid()}.png`;
-            await saveToCache({
-              dataURL,
-              url,
+            const url = await saveToCache({
+              file,
             });
             onChange(url);
           }

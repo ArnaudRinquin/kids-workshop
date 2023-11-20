@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { saveToCache } from "@/cache";
 import { Button } from "@/components/Button";
 import { PageContainer } from "@/components/PageContainer";
@@ -36,14 +35,10 @@ export function KidUpdate() {
         onSubmit={async (data) => {
           let photoUrl = kid.photoUrl;
           if (data.photoUrl?.length) {
-            const photoFile = data.photoUrl[0];
-            const dataURL = URL.createObjectURL(photoFile);
-            const url = `/kids/${uuid()}.png`;
-            await saveToCache({
-              dataURL,
-              url,
+            const file = data.photoUrl[0];
+            photoUrl = await saveToCache({
+              file,
             });
-            photoUrl = url;
           }
           if (data.photoUrl === null) {
             photoUrl = null;

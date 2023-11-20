@@ -7,16 +7,13 @@ export async function getCache() {
   return await caches.open(CACHE_KEY);
 }
 
-export async function saveToCache({
-  dataURL,
-  url,
-}: {
-  dataURL: string;
-  url: string;
-}) {
-  const response = await fetch(dataURL);
+export async function saveToCache({ file }: { file: File }) {
+  const blobUrl = URL.createObjectURL(file);
+  const response = await fetch(blobUrl);
   const cache = await getCache();
-  return cache.put(url, response);
+  const url = response.url.slice("blob:".length);
+  await cache.put(url, response);
+  return url;
 }
 
 export async function getFromCache(url: string) {

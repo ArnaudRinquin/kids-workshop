@@ -87,7 +87,6 @@ export default function Workshop() {
           <PageTitle backLink="/workshops">
             {workshop.name}
             <CachedImageInput
-              prefix="/kids"
               className="ml-auto"
               onChange={(url) => {
                 setWorkshopPhoto({
