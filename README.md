@@ -70,6 +70,7 @@ Quelques détails sur la pile technique :
     - [x] Workshops list
     - [x] Workshop
     - [ ] Admin
+      - [ ] Kids/Workshops CRUD
       - [ ] Kids/Workshop status table
       - [ ] Kids progress page w/ print view
   - [x] Bookmarking
