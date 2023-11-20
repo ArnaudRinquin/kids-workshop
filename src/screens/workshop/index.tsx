@@ -84,7 +84,7 @@ export default function Workshop() {
     <PageContainer
       header={
         <div className="flex flex-wrap items-end justify-between">
-          <PageTitle backLink="/kids">
+          <PageTitle backLink="/workshops">
             {workshop.name}
             <CachedImageInput
               prefix="/kids"
