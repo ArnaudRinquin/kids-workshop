@@ -14,6 +14,10 @@ type State = {
 
 type Actions = {
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
+  setKidAttributes: (
+    kidId: string,
+    attributes: Partial<Omit<Kid, "id">>
+  ) => void;
   setWorkshopPhotoUrl: (args: {
     workshopId: string;
     photoUrl: Maybe<string>;
@@ -68,6 +72,17 @@ export const useStore = create(
           const kid = kids.find((kid) => kid.id === kidId);
           if (kid) {
             kid.photoUrl = photoUrl;
+          } else {
+            throw new Error(`Kid with id ${kidId} not found`);
+          }
+        });
+      },
+      setKidAttributes: (kidId, attrs) => {
+        set((state) => {
+          const kids = state.kids;
+          const kid = kids.find((kid) => kid.id === kidId);
+          if (kid) {
+            Object.assign(kid, attrs);
           } else {
             throw new Error(`Kid with id ${kidId} not found`);
           }
