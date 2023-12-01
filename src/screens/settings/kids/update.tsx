@@ -6,7 +6,7 @@ import { useKid, useStore } from "@/dataStore";
 import { Kid, Maybe } from "@/types";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
-import placeholderSrc from "@/components/kids/default-kid.svg";
+import placeholderSrc from "@/components/kids/placeholder.png";
 import { CardImage } from "@/components/Card";
 
 export function KidUpdate() {

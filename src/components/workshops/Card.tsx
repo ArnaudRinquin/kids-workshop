@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card, { CardImage } from "../Card";
-import placeholderSrc from "./default-workshop.svg";
+import placeholderSrc from "./placeholder.png";
 import Chip, { ChipVariant } from "../Chip";
 import { Workshop } from "@/types";
 import { useFromCache } from "@/cache";

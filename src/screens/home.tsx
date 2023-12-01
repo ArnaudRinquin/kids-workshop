@@ -4,8 +4,8 @@ import { PageContainer } from "@/components/PageContainer";
 import { Link } from "react-router-dom";
 import { CardGrid } from "@/components/CardGrid";
 import Card, { CardImage } from "@/components/Card";
-import workshopPlaceholderSrc from "@/components/workshops/default-workshop.svg";
-import kidPlaceholderSrc from "@/components/kids/default-kid.svg";
+import workshopPlaceholderSrc from "@/components/workshops/placeholder.png";
+import kidPlaceholderSrc from "@/components/kids/placeholder.png";
 
 export default function Home() {
   return (
