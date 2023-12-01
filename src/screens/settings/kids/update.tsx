@@ -1,4 +1,4 @@
-import { saveToCache } from "@/cache";
+import { saveToCache, useFromCache } from "@/cache";
 import { Button } from "@/components/Button";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
@@ -6,9 +6,8 @@ import { useKid, useStore } from "@/dataStore";
 import { Kid, Maybe } from "@/types";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
-import { CachedCardImage } from "@/components/Cache/Image";
-import { CardImage } from "@/components/Card";
 import placeholderSrc from "@/components/kids/default-kid.svg";
+import { CardImage } from "@/components/Card";
 
 export function KidUpdate() {
   const navigate = useNavigate();
@@ -62,12 +61,20 @@ export function KidForm({ kid, onSubmit }: KidFormProps) {
     defaultValues,
   });
 
-  const photoUrlValue = watch("photoUrl");
+  const pendingPhotoUrl = watch("photoUrl");
+  const pendingSrc =
+    pendingPhotoUrl === null
+      ? placeholderSrc
+      : pendingPhotoUrl && pendingPhotoUrl.length
+      ? URL.createObjectURL(pendingPhotoUrl[0])
+      : undefined;
+  const existingSrc = useFromCache(photoUrl) ?? placeholderSrc;
+  const src = pendingSrc ?? existingSrc;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <label>
-        <PendingPhoto pendingPhotoUrl={photoUrlValue} photoUrl={photoUrl} />
+        <CardImage src={src} />
         <input
           id="photo"
           className="hidden"
@@ -101,25 +108,4 @@ export function KidForm({ kid, onSubmit }: KidFormProps) {
       <Button type="submit">Enregistrer</Button>
     </form>
   );
-}
-
-function PendingPhoto({
-  pendingPhotoUrl,
-  photoUrl,
-}: {
-  photoUrl: Maybe<string>;
-  pendingPhotoUrl: Maybe<FileList>;
-}) {
-  if (pendingPhotoUrl === null) {
-    return <CardImage src={placeholderSrc} />;
-  }
-  if (pendingPhotoUrl?.length) {
-    return <CardImage src={URL.createObjectURL(pendingPhotoUrl[0])} />;
-  }
-
-  if (photoUrl) {
-    return <CachedCardImage src={photoUrl} alt="" />;
-  }
-
-  return <CardImage src={placeholderSrc} />;
 }

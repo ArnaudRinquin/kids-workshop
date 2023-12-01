@@ -3,7 +3,7 @@ import Card, { CardImage } from "../Card";
 import placeholderSrc from "./default-workshop.svg";
 import Chip, { ChipVariant } from "../Chip";
 import { Workshop } from "@/types";
-import { CachedCardImage } from "../Cache/Image";
+import { useFromCache } from "@/cache";
 
 type Props = Workshop & {
   children?: React.ReactNode;
@@ -23,6 +23,7 @@ function getVariableForDifficulty(
 }
 
 export function WorkshopCard(props: Props) {
+  const src = useFromCache(props.photoUrl) ?? placeholderSrc;
   return (
     <Card>
       <div className="p-4 gap-4 flex flex-col">
@@ -40,11 +41,7 @@ export function WorkshopCard(props: Props) {
         >
           Difficulté: {props.difficulty}
         </Chip>
-        {props.photoUrl ? (
-          <CachedCardImage src={props.photoUrl} alt={props.name} />
-        ) : (
-          <CardImage src={placeholderSrc} alt={props.name} />
-        )}
+        <CardImage src={src} alt={props.name} />
         {props.children}
       </div>
     </Card>

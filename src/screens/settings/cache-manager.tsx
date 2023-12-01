@@ -1,6 +1,11 @@
-import { deleteCachedRequest, saveToCache, useCachedRequests } from "@/cache";
+import {
+  deleteCachedRequest,
+  saveToCache,
+  useCachedRequests,
+  useFromCache,
+} from "@/cache";
 import { Button } from "@/components/Button";
-import { CachedCardImage } from "@/components/Cache/Image";
+import { CardImage } from "@/components/Card";
 import { PageContainer } from "@/components/PageContainer";
 import PageTitle from "@/components/PageTitle";
 import React from "react";
@@ -35,20 +40,32 @@ export function CacheManager() {
 
       <ul>
         {cachedURLs.map((request) => (
-          <li key={request.url} className="flex items-center">
-            <CachedCardImage src={request.url} />
-            {request.url}
-            <Button
-              onClick={() => {
-                deleteCachedRequest(request.url);
-                setKey(uuid());
-              }}
-            >
-              Delete
-            </Button>
-          </li>
+          <Item
+            request={request}
+            onDelete={() => {
+              deleteCachedRequest(request.url);
+              setKey(uuid());
+            }}
+          />
         ))}
       </ul>
     </PageContainer>
+  );
+}
+
+function Item({
+  request,
+  onDelete,
+}: {
+  request: Request;
+  onDelete: () => void;
+}) {
+  const src = useFromCache(request.url);
+  return (
+    <li key={request.url} className="flex items-center">
+      <CardImage src={src} />
+      {request.url}
+      <Button onClick={onDelete}>Delete</Button>
+    </li>
   );
 }
