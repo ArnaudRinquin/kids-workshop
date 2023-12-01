@@ -10,7 +10,7 @@ export default function Card(props: CardProps) {
     <div
       {...props}
       className={classNames(
-        "relative flex flex-col rounded-xl bg-amber-50 bg-clip-border text-gray-700 shadow-md",
+        "relative overflow-clip rounded-xl bg-gradient-to-r to-amber-200 from-orange-300 bg-clip-border text-gray-700 shadow-md",
         props.className
       )}
     />
@@ -23,7 +23,7 @@ type CardImageProps = React.DetailedHTMLProps<
 >;
 export function CardImage({ className, ...props }: CardImageProps) {
   return (
-    <div className="relative m-1 h-40 overflow-hidden rounded-xl bg-white bg-clip-content text-gray-700 shadow-lg flex items-center">
+    <div className="relative m-1 h-40 overflow-hidden rounded-xl bg-gradient-to-r from-stone-50 to-stone-100 bg-clip-content text-gray-700 shadow-lg flex items-center">
       <img
         className={classNames("mx-auto", className)}
         style={{ maxWidth: "100%", maxHeight: "100%" }}

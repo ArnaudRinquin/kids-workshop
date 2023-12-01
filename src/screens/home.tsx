@@ -45,8 +45,8 @@ export default function Home() {
               <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                 Gestion
               </h4>
-              <Card className="bg-white flex items-center justify-center m-2 h-40">
-                <div className="text-6xl ">⚙️</div>
+              <Card className="flex items-center justify-center m-2 h-40 from-stone-100 to-stone-200">
+                <div className="text-6xl">⚙️</div>
               </Card>
             </div>
           </Card>

@@ -13,10 +13,16 @@ export function PageContainer({
   containerRef?: React.RefObject<HTMLDivElement>;
 }) {
   return (
-    <>
+    <div
+      className="from-teal-200 to-blue-200 bg-gradient-to-r h-screen grid"
+      style={{
+        gridTemplateRows: "auto 1fr",
+        gridTemplateColumns: "1fr",
+      }}
+    >
       <PWAHandler />
       <main
-        className="p-3 sm:p-6 max-h-screen overflow-hidden grid"
+        className="p-3 sm:p-6 overflow-hidden grid"
         style={{
           gridTemplateRows: "auto 1fr",
           gridTemplateColumns: "1fr",
@@ -30,6 +36,6 @@ export function PageContainer({
           {children}
         </div>
       </main>
-    </>
+    </div>
   );
 }
