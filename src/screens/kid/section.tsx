@@ -28,7 +28,7 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
   return (
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
-      <CardGrid>
+      <CardGrid minItemWidth={400}>
         {workshops.map((workshop) => (
           <WorkshopCard
             {...workshop}
@@ -46,7 +46,7 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
         {hasMore && (
           <Card className="flex items-center justify-center">
             <button
-              className="p-8 text-blue-500 hover:text-blue-700"
+              className="p-8 text-blue-500 hover:text-blue-600 text-lg font-semibold"
               onClick={showMore}
             >
               Voir plus

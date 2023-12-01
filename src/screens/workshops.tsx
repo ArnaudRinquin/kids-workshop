@@ -62,7 +62,7 @@ export function CategorySection({
   return (
     <>
       <SectionTitle id={category.name}>{category.name}</SectionTitle>
-      <CardGrid>
+      <CardGrid minItemWidth={300}>
         {workshops.map((workshop) => (
           <WorkshopCard key={workshop.id} {...workshop} />
         ))}

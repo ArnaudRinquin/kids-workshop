@@ -67,9 +67,9 @@ export function ProgressCardContent({
   ];
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <LabeledDateInput
-        label={"Présenté le : "}
+        label="Présenté :"
         value={toInputDate(existingProgress?.presentedAt)}
         onChange={(date) => {
           setPresentedAt({
@@ -79,17 +79,8 @@ export function ProgressCardContent({
           });
         }}
       />
-
-      <ProgressBar
-        steps={successSteps}
-        currentStep={successToStep(existingProgress?.success)}
-      />
-      <ProgressBar
-        steps={completionSteps}
-        currentStep={completionToStep(existingProgress?.completion)}
-      />
       <LabeledDateInput
-        label={"Validé le : "}
+        label="Validé :"
         value={toInputDate(existingProgress?.validatedAt)}
         onChange={(date) =>
           setValidatedAt({
@@ -99,7 +90,15 @@ export function ProgressCardContent({
           })
         }
       />
-    </>
+      <ProgressBar
+        steps={successSteps}
+        currentStep={successToStep(existingProgress?.success)}
+      />
+      <ProgressBar
+        steps={completionSteps}
+        currentStep={completionToStep(existingProgress?.completion)}
+      />
+    </div>
   );
 }
 
@@ -113,7 +112,7 @@ function LabeledDateInput({
   value: string;
 }) {
   return (
-    <div className="flex">
+    <div className="flex gap-2 justify-between">
       {label}
       <input
         type="date"

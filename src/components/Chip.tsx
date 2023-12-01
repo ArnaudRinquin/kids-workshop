@@ -3,7 +3,7 @@ import { levelColorMap } from "./levelColorMap";
 
 export type ChipVariant = "green" | "yellow" | "red";
 
-type ChipProps = {
+export type ChipProps = {
   variant: ChipVariant;
 } & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,

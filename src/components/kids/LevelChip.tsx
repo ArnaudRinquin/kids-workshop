@@ -1,5 +1,5 @@
 import { KidLevel } from "@/types";
-import { Chip, ChipVariant } from "../Chip";
+import { Chip, ChipVariant, type ChipProps } from "../Chip";
 
 const chipVariantMap: Record<KidLevel, ChipVariant> = {
   beginner: "green",
@@ -13,10 +13,13 @@ const chipLabelMap: Record<KidLevel, string> = {
   advanced: "grand",
 };
 
-export function KidLevelChip(props: { level: KidLevel }) {
+export function KidLevelChip({
+  level,
+  ...props
+}: Omit<ChipProps, "variant"> & { level: KidLevel }) {
   return (
-    <Chip variant={chipVariantMap[props.level]}>
-      Niveau : {chipLabelMap[props.level]}
+    <Chip {...props} variant={chipVariantMap[level]}>
+      Niveau : {chipLabelMap[level]}
     </Chip>
   );
 }

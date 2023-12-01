@@ -16,7 +16,7 @@ export function BookmarkButton({ kidId, workshopId }: BookmarkButtonProps) {
   const { setBookmarkedAt } = useStore();
   return (
     <button
-      className="p-2 shrink-0"
+      className="shrink-0"
       onClick={() => {
         setBookmarkedAt({
           kidId,

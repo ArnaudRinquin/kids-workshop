@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React, { useRef } from "react";
 
-const CELL_CLASSES = "border border-slate-400 avoid-page-break";
+const CELL_CLASSES = "border border-slate-400 avoid-page-break w-64 bg-white";
 
 export function Table() {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export function Table() {
   const virtualizer = useVirtualizer({
     count: workshops.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 220,
+    estimateSize: () => 210,
     overscan: 2,
   });
 
@@ -116,7 +116,10 @@ export function Cell({
 } & React.HTMLAttributes<HTMLTableCellElement>) {
   return (
     <td {...props} className={classNames(props.className, CELL_CLASSES, "p-2")}>
-      <BookmarkButton kidId={kid.id} workshopId={workshop.id} />
+      <div className="flex justify-between mb-2">
+        Épinglé :
+        <BookmarkButton kidId={kid.id} workshopId={workshop.id} />
+      </div>
       <ProgressCardContent kid={kid} workshop={workshop} />
     </td>
   );

@@ -10,7 +10,7 @@ export function Card(props: CardProps) {
     <div
       {...props}
       className={classNames(
-        "relative overflow-clip rounded-xl bg-gradient-to-r to-amber-200 from-orange-300 bg-clip-border text-gray-700 shadow-md",
+        "overflow-clip rounded-xl bg-gradient-to-r to-amber-200 from-orange-300 bg-clip-border text-gray-700 shadow-md",
         props.className
       )}
     />
