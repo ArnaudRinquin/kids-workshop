@@ -12,7 +12,7 @@ export function PageTitle({ className, ...props }: Props) {
   return (
     <h1
       className={classNames(
-        "my-4 text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 flex items-center gap-x-4",
+        "my-4 text-3xl sm:text-5xl font-bold tracking-tight text-sky-950 flex items-center gap-x-4",
         className
       )}
     >

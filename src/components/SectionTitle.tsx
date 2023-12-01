@@ -10,7 +10,7 @@ export function SectionTitle({
   return (
     <h2
       className={classNames(
-        "text-xl sm:text-2xl font-semibold my-2 text-gray-900",
+        "text-xl sm:text-2xl font-semibold my-2 text-sky-950",
         className
       )}
       {...props}
