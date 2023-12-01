@@ -1,5 +1,5 @@
 import { KidLevel } from "@/types";
-import Chip, { ChipVariant } from "../Chip";
+import { Chip, ChipVariant } from "../Chip";
 
 const chipVariantMap: Record<KidLevel, ChipVariant> = {
   beginner: "green",

@@ -5,7 +5,7 @@ type CardProps = React.DetailedHTMLProps<
   HTMLDivElement
 >;
 
-export default function Card(props: CardProps) {
+export function Card(props: CardProps) {
   return (
     <div
       {...props}

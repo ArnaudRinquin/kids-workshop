@@ -1,13 +1,13 @@
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import "@/app.css";
 import { PageContainer } from "@/components/PageContainer";
 import { Link } from "react-router-dom";
 import { CardGrid } from "@/components/CardGrid";
-import Card, { CardImage } from "@/components/Card";
+import { Card, CardImage } from "@/components/Card";
 import workshopPlaceholderSrc from "@/components/workshops/placeholder.png";
 import kidPlaceholderSrc from "@/components/kids/placeholder.png";
 
-export default function Home() {
+export function Home() {
   return (
     <PageContainer header={<PageTitle>MonteSuivi</PageTitle>}>
       <CardGrid>

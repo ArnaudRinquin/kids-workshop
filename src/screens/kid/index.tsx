@@ -1,6 +1,6 @@
 import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { KidLevelChip } from "@/components/kids/LevelChip";
 import {
   useKid,
@@ -19,7 +19,7 @@ import { Workshop } from "@/types";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
 import React from "react";
 
-export default function KidPage() {
+export function Kid() {
   const params = useParams<{ kidId: string }>();
   if (!params.kidId) {
     throw new Error("Missing kidId");

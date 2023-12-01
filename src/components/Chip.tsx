@@ -10,7 +10,7 @@ type ChipProps = {
   HTMLDivElement
 >;
 
-export default function Chip({ className, ...props }: ChipProps) {
+export function Chip({ className, ...props }: ChipProps) {
   const bgColor = levelColorMap[props.variant];
 
   return (

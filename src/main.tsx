@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./screens/home";
-import Kids from "./screens/kids";
-import Kid from "./screens/kid";
-import Workshops from "./screens/workshops";
-import Workshop from "./screens/workshop";
+import { Home } from "./screens/home";
+import { Kids } from "./screens/kids";
+import { Kid } from "./screens/kid";
+import { Workshops } from "./screens/workshops";
+import { Workshop } from "./screens/workshop";
 import { Settings } from "./screens/settings";
 import { CacheManager } from "./screens/settings/cache-manager";
 import { Table } from "./screens/settings/table";

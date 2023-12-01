@@ -1,6 +1,6 @@
 import { CardGrid } from "@/components/CardGrid";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { SectionListLink } from "@/components/SectionList/Link";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
 import { SectionListWrapper } from "@/components/SectionList/Wrapper";
@@ -9,7 +9,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { KidsCard } from "@/components/kids/Card";
 import { useKidsAtLevel } from "@/dataStore";
 
-export default function Kids() {
+export function Kids() {
   const categories = [
     {
       id: "petits",

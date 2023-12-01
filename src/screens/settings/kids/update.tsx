@@ -1,7 +1,7 @@
 import { saveToCache, useFromCache } from "@/cache";
 import { Button } from "@/components/Button";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { useKid, useStore } from "@/dataStore";
 import { Kid, Maybe } from "@/types";
 import { useForm } from "react-hook-form";

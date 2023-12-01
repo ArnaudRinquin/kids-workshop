@@ -1,6 +1,6 @@
 import { CardGrid } from "@/components/CardGrid";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { SectionListLink } from "@/components/SectionList/Link";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
 import { SectionListWrapper } from "@/components/SectionList/Wrapper";
@@ -14,7 +14,7 @@ import {
 } from "@/dataStore";
 import { Category } from "@/types";
 
-export default function Workshops() {
+export function Workshops() {
   const categories = useCategories();
   console.log(categories);
   const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();

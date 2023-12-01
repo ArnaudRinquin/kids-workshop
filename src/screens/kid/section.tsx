@@ -1,4 +1,4 @@
-import Card from "@/components/Card";
+import { Card } from "@/components/Card";
 import { CardGrid } from "@/components/CardGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { BookmarkButton } from "@/components/progress/BookmarkButton";

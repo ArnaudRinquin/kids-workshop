@@ -7,7 +7,7 @@ import {
 import { Button } from "@/components/Button";
 import { CardImage } from "@/components/Card";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import React from "react";
 import { v4 as uuid } from "uuid";
 

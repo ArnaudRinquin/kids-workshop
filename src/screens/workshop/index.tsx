@@ -1,6 +1,6 @@
 import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { SectionListLink } from "@/components/SectionList/Link";
 import { SectionNavBar } from "@/components/SectionList/NavBar";
 import { SectionListWrapper } from "@/components/SectionList/Wrapper";
@@ -18,7 +18,7 @@ import { useParams } from "react-router-dom";
 import { WorkshopKidsSection } from "./section";
 import React from "react";
 
-export default function Workshop() {
+export function Workshop() {
   const params = useParams<{ workshopId: string }>();
   if (!params.workshopId) {
     throw new Error("Missing workshopId");

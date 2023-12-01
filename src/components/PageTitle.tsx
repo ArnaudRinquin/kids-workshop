@@ -8,7 +8,7 @@ type Props = React.DetailedHTMLProps<
   backLink?: string;
 };
 
-export default function PageTitle({ className, ...props }: Props) {
+export function PageTitle({ className, ...props }: Props) {
   return (
     <h1
       className={classNames(

@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { ButtonLabel } from "@/components/Button/Label";
 import { ButtonLink } from "@/components/Button/Link";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useStore } from "@/dataStore";
 

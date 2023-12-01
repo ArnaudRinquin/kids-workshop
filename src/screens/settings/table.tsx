@@ -1,5 +1,5 @@
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { BookmarkButton } from "@/components/progress/BookmarkButton";
 import { ProgressCardContent } from "@/components/progress/CardContent";
 import { useKids, useWorkshops } from "@/dataStore";

@@ -1,7 +1,7 @@
 import { ButtonLink } from "@/components/Button/Link";
 import { CardGrid } from "@/components/CardGrid";
 import { PageContainer } from "@/components/PageContainer";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import { KidsCard } from "@/components/kids/Card";
 import { useKids } from "@/dataStore";
 
