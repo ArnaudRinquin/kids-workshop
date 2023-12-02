@@ -1,10 +1,8 @@
-import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { PageContainer } from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { KidLevelChip } from "@/components/kids/LevelChip";
 import {
   useKid,
-  useSetKidPhotoUrl,
   useWorkshopsInProgressForKid,
   useStartableWorkshopsForKid,
   useValidatedWorkshopsForKid,
@@ -40,7 +38,6 @@ export function Kid() {
     kidId: params.kidId,
   });
 
-  const setKidPhoto = useSetKidPhotoUrl();
   const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();
 
   // we don't want these categories to change until we navigate to another kid or page
@@ -89,17 +86,6 @@ export function Kid() {
           <PageTitle backLink="/kids">
             {kid.name}
             <KidLevelChip level={kid.level} />
-            <CachedImageInput
-              className="ml-auto"
-              onChange={(url) => {
-                setKidPhoto({
-                  photoUrl: url,
-                  kidId: kid.id,
-                });
-              }}
-            >
-              📸
-            </CachedImageInput>
           </PageTitle>
           <SectionNavBar>
             {categories.map((category) => (

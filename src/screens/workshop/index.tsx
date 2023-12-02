@@ -1,4 +1,3 @@
-import { CachedImageInput } from "@/components/Cache/ImageInput";
 import { PageContainer } from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { SectionListLink } from "@/components/SectionList/Link";
@@ -10,7 +9,6 @@ import {
   useKidsInProgressForWorkshop,
   useKidsStartableForWorkshop,
   useKidsValidatedForWorkshop,
-  useSetWorkshopPhotoUrl,
   useWorkshop,
 } from "@/dataStore";
 import { Kid } from "@/types";
@@ -24,7 +22,6 @@ export function Workshop() {
     throw new Error("Missing workshopId");
   }
   const workshop = useWorkshop({ workshopId: params.workshopId });
-  const setWorkshopPhoto = useSetWorkshopPhotoUrl();
 
   const { activeSectionId, setActiveSectionId } = useActiveSectionTracker();
 
@@ -84,20 +81,7 @@ export function Workshop() {
     <PageContainer
       header={
         <div className="flex flex-wrap items-end justify-between">
-          <PageTitle backLink="/workshops">
-            {workshop.name}
-            <CachedImageInput
-              className="ml-auto"
-              onChange={(url) => {
-                setWorkshopPhoto({
-                  photoUrl: url,
-                  workshopId: workshop.id,
-                });
-              }}
-            >
-              📸
-            </CachedImageInput>
-          </PageTitle>
+          <PageTitle backLink="/workshops">{workshop.name}</PageTitle>
           <SectionNavBar>
             {categories.map((category) => (
               <SectionListLink
