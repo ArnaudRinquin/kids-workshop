@@ -20,10 +20,21 @@ export function Card(props: CardProps) {
 type CardImageProps = React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
->;
-export function CardImage({ className, ...props }: CardImageProps) {
+> & {
+  containerClassName?: string;
+};
+export function CardImage({
+  className,
+  containerClassName,
+  ...props
+}: CardImageProps) {
   return (
-    <div className="relative m-1 overflow-hidden rounded-xl bg-gradient-to-r from-stone-50 to-stone-100 bg-clip-content text-gray-700 shadow-lg flex items-center">
+    <div
+      className={classNames(
+        "overflow-clip rounded-xl bg-gradient-to-r from-stone-50 to-stone-100 bg-clip-content text-gray-700 shadow-lg flex items-center",
+        containerClassName
+      )}
+    >
       <img
         className={classNames("mx-auto", className)}
         style={{ maxWidth: "100%", maxHeight: "100%" }}
