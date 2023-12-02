@@ -13,6 +13,7 @@ type State = {
 };
 
 type Actions = {
+  createKid: (args: Omit<Kid, "id">) => Kid;
   setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
   setKidAttributes: (
     kidId: string,
@@ -65,6 +66,16 @@ export const useStore = create(
           workshops: _d.workshops,
           progresses: _d.progresses,
         });
+      },
+      createKid: (args) => {
+        const kid = {
+          id: uuid(),
+          ...args,
+        };
+        set((state) => {
+          state.kids.push(kid);
+        });
+        return kid;
       },
       setKidPhotoUrl: ({ kidId, photoUrl }) => {
         set((state) => {

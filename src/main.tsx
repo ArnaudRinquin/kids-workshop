@@ -10,6 +10,7 @@ import { CacheManager } from "./screens/settings/cache-manager";
 import { Table } from "./screens/settings/table";
 import { KidsList } from "./screens/settings/kids/list";
 import { KidUpdate } from "./screens/settings/kids/update";
+import { CreateKid } from "./screens/settings/kids/create";
 
 const basename = import.meta.env.MS_BASENAME ?? "/";
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter(
     {
       path: "/settings/kids/:kidId",
       element: <KidUpdate />,
+    },
+    {
+      path: "/settings/kids/create",
+      element: <CreateKid />,
     },
     {
       path: "/settings/cache",

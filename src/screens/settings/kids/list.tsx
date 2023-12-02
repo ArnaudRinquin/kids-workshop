@@ -9,7 +9,12 @@ export function KidsList() {
   const kids = useKids();
   return (
     <PageContainer
-      header={<PageTitle backLink="/settings">Liste des enfants</PageTitle>}
+      header={
+        <PageTitle backLink="/settings">
+          Liste des enfants
+          <ButtonLink to="/settings/kids/create">Ajouter</ButtonLink>
+        </PageTitle>
+      }
     >
       <CardGrid>
         {kids.map((kid) => (
