@@ -27,7 +27,7 @@ export function WorkshopKidsSection(props: WorkshopKidsSectionProps) {
   return (
     <>
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
-      <CardGrid minItemWidth={480}>
+      <CardGrid>
         {kids.map((kid) => (
           <KidsCard {...kid}>
             <ProgressCardContent

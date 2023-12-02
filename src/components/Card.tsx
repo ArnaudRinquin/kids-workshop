@@ -23,7 +23,7 @@ type CardImageProps = React.DetailedHTMLProps<
 >;
 export function CardImage({ className, ...props }: CardImageProps) {
   return (
-    <div className="relative m-1 h-40 overflow-hidden rounded-xl bg-gradient-to-r from-stone-50 to-stone-100 bg-clip-content text-gray-700 shadow-lg flex items-center">
+    <div className="relative m-1 overflow-hidden rounded-xl bg-gradient-to-r from-stone-50 to-stone-100 bg-clip-content text-gray-700 shadow-lg flex items-center">
       <img
         className={classNames("mx-auto", className)}
         style={{ maxWidth: "100%", maxHeight: "100%" }}

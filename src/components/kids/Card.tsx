@@ -12,24 +12,16 @@ type Props = Kid & {
 export function KidsCard(props: Props) {
   const src = useFromCache(props.photoUrl) ?? placeholderSrc;
   return (
-    <Card
-      className="grid p-4 gap-4"
-      style={{ gridTemplateColumns: "minmax(150px, 200px)" }}
-    >
-      <Link
-        to={`/kids/${props.id}`}
-        style={{ gridColumn: props.children ? "1 / 3" : undefined }}
-      >
+    <Card className="flex flex-col p-4 gap-4">
+      <Link to={`/kids/${props.id}`} className="col-span-full">
         <h4 className="flex text-2xl font-semibold text-blue-gray-900 items-center justify-between gap-2">
           {props.name}
         </h4>
       </Link>
-      <Link to={`/kids/${props.id}`} style={{ gridColumn: 1, gridRow: 2 }}>
+      <Link to={`/kids/${props.id}`}>
         <CardImage src={src ?? placeholderSrc} alt={props.name} />
       </Link>
-      {props.children && (
-        <div style={{ gridColumn: 2, gridRow: 2 }}>{props.children}</div>
-      )}
+      {props.children && <div>{props.children}</div>}
     </Card>
   );
 }
