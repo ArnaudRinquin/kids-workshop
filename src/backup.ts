@@ -32,7 +32,7 @@ export async function generateZipAndDownload() {
   const zipFileBlob = await zipFileWriter.getData();
   const link = document.createElement("a");
   link.href = URL.createObjectURL(zipFileBlob);
-  link.download = "test.zip";
+  link.download = `monte-suivi-${new Date().toISOString()}.zip`;
   link.click();
   link.remove();
 }
