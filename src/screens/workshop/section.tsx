@@ -29,7 +29,7 @@ export function WorkshopKidsSection(props: WorkshopKidsSectionProps) {
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
       <CardGrid>
         {kids.map((kid) => (
-          <KidsCard {...kid}>
+          <KidsCard key={kid.id} {...kid}>
             <ProgressCardContent
               key={kid.id}
               workshop={props.workshop}

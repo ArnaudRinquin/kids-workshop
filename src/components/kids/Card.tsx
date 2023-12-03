@@ -21,7 +21,7 @@ export function KidsCard(props: Props) {
       <Link to={`/kids/${props.id}`}>
         <CardImage src={src ?? placeholderSrc} alt={props.name} />
       </Link>
-      {props.children && <div>{props.children}</div>}
+      {props.children}
     </Card>
   );
 }

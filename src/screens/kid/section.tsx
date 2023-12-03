@@ -31,6 +31,7 @@ export function KidWorkshopsSection(props: KidWorkshopsSectionProps) {
       <CardGrid>
         {workshops.map((workshop) => (
           <WorkshopCard
+            key={workshop.id}
             {...workshop}
             titleControl={
               <BookmarkButton kidId={props.kid.id} workshopId={workshop.id} />

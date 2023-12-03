@@ -14,7 +14,8 @@ type State = {
 
 type Actions = {
   createKid: (args: Omit<Kid, "id">) => Kid;
-  setKidPhotoUrl: (args: { kidId: string; photoUrl: Maybe<string> }) => void;
+  removeKid: (args: { kidId: Kid["id"] }) => void;
+  setKidPhotoUrl: (args: { kidId: Kid["id"]; photoUrl: Maybe<string> }) => void;
   setKidAttributes: (
     kidId: string,
     attributes: Partial<Omit<Kid, "id">>
@@ -76,6 +77,14 @@ export const useStore = create(
           state.kids.push(kid);
         });
         return kid;
+      },
+      removeKid: ({ kidId }) => {
+        set((state) => {
+          state.kids = state.kids.filter((kid) => kid.id !== kidId);
+          state.progresses = state.progresses.filter(
+            (progress) => progress.kidId !== kidId
+          );
+        });
       },
       setKidPhotoUrl: ({ kidId, photoUrl }) => {
         set((state) => {

@@ -112,7 +112,7 @@ function LabeledDateInput({
   value: string;
 }) {
   return (
-    <div className="flex gap-2 justify-between">
+    <div className="flex gap-2 justify-between items-start">
       {label}
       <input
         type="date"

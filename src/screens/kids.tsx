@@ -38,6 +38,7 @@ export function Kids() {
           <SectionNavBar>
             {categories.map((category) => (
               <SectionListLink
+                key={category.id}
                 href={`#${category.name}`}
                 isActive={category.id === activeSectionId}
               >
@@ -50,6 +51,7 @@ export function Kids() {
     >
       {categories.map((category) => (
         <SectionListWrapper
+          key={category.id}
           id={category.id}
           setActiveSectionId={setActiveSectionId}
         >

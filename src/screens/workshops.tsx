@@ -26,6 +26,7 @@ export function Workshops() {
           <SectionNavBar>
             {categories.map((category) => (
               <SectionListLink
+                key={category.id}
                 href={`#${category.name}`}
                 isActive={category.id === activeSectionId}
               >
