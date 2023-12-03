@@ -14,7 +14,7 @@ export function PageContainer({
 }) {
   return (
     <div
-      className="h-screen grid"
+      className="from-teal-200 to-blue-200 bg-gradient-to-r h-screen grid"
       style={{
         gridTemplateRows: "auto 1fr",
         gridTemplateColumns: "1fr",

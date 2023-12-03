@@ -22,8 +22,10 @@ export function Settings() {
         <SectionTitle>Gestion</SectionTitle>
         <ButtonLink to="/settings/kids">Enfants</ButtonLink>
         <ButtonLink to="/settings/workshops">Ateliers</ButtonLink>
+
         <SectionTitle>Rapports 📊</SectionTitle>
         <ButtonLink to="/settings/table">Vue tableau</ButtonLink>
+        <ButtonLink to="/settings/progress">Progression</ButtonLink>
 
         <SectionTitle>Sauvegarde 🛟</SectionTitle>
         <Button onClick={generateZipAndDownload}>

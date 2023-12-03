@@ -1,6 +1,7 @@
 import { useProgressForKidAndWorkshop, useStore } from "@/dataStore";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Kid, Maybe, Progress, Workshop } from "@/types";
+import { Input } from "../Input";
 
 export function ProgressCardContent({
   kid,
@@ -114,7 +115,7 @@ function LabeledDateInput({
   return (
     <div className="flex gap-2 justify-between items-start">
       {label}
-      <input
+      <Input
         type="date"
         value={value}
         onChange={(event) => onChange(event.target.valueAsNumber)}

@@ -14,8 +14,9 @@ import { CreateKid } from "./screens/settings/kids/create";
 import { WorkshopsList } from "./screens/settings/workshops/list";
 import { WorkshopUpdate } from "./screens/settings/workshops/edit";
 import { CreateWorkshop } from "./screens/settings/workshops/create";
-
-const basename = import.meta.env.MS_BASENAME ?? "/";
+import { Progress } from "./screens/settings/progress";
+import { basename } from "./config";
+import { ProgressReport } from "./screens/settings/progress/report";
 
 const router = createBrowserRouter(
   [
@@ -74,6 +75,14 @@ const router = createBrowserRouter(
     {
       path: "/settings/table",
       element: <Table />,
+    },
+    {
+      path: "/settings/progress",
+      element: <Progress />,
+    },
+    {
+      path: "/settings/progress/:mode",
+      element: <ProgressReport />,
     },
   ],
   {
