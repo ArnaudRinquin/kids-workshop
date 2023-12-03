@@ -20,6 +20,12 @@ type Actions = {
     kidId: string,
     attributes: Partial<Omit<Kid, "id">>
   ) => void;
+  createWorkshop: (args: Omit<Workshop, "id">) => Workshop;
+  setWorkshopAttributes: (
+    workshopId: string,
+    attributes: Partial<Omit<Workshop, "id">>
+  ) => void;
+  removeWorkshop: (args: { workshopId: Workshop["id"] }) => void;
   setWorkshopPhotoUrl: (args: {
     workshopId: string;
     photoUrl: Maybe<string>;
@@ -106,6 +112,39 @@ export const useStore = create(
           } else {
             throw new Error(`Kid with id ${kidId} not found`);
           }
+        });
+      },
+      createWorkshop: (args) => {
+        const workshop = {
+          id: uuid(),
+          ...args,
+        };
+        set((state) => {
+          state.workshops.push(workshop);
+        });
+        return workshop;
+      },
+      setWorkshopAttributes: (workshopId, attrs) => {
+        set((state) => {
+          const workshops = state.workshops;
+          const workshop = workshops.find(
+            (workshop) => workshop.id === workshopId
+          );
+          if (workshop) {
+            Object.assign(workshop, attrs);
+          } else {
+            throw new Error(`Workshop with id ${workshopId} not found`);
+          }
+        });
+      },
+      removeWorkshop: ({ workshopId }) => {
+        set((state) => {
+          state.workshops = state.workshops.filter(
+            (workshop) => workshop.id !== workshopId
+          );
+          state.progresses = state.progresses.filter(
+            (progress) => progress.workshopId !== workshopId
+          );
         });
       },
       setWorkshopPhotoUrl: ({ workshopId, photoUrl }) => {

@@ -20,7 +20,8 @@ export function Settings() {
     <PageContainer header={<PageTitle backLink="/">Paramètres</PageTitle>}>
       <div className="flex flex-col gap-y-5">
         <SectionTitle>Gestion</SectionTitle>
-        <ButtonLink to="/settings/kids">Gestion des enfants</ButtonLink>
+        <ButtonLink to="/settings/kids">Enfants</ButtonLink>
+        <ButtonLink to="/settings/workshops">Ateliers</ButtonLink>
         <SectionTitle>Rapports 📊</SectionTitle>
         <ButtonLink to="/settings/table">Vue tableau</ButtonLink>
 
