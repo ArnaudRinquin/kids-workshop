@@ -72,7 +72,7 @@ Quelques détails sur la pile technique :
     - [x] Admin
       - [x] Kids/Workshops CRUD
       - [x] Kids/Workshop status table
-      - [ ] Kids progress page w/ print view
+      - [x] Kids progress page w/ print view
   - [x] Bookmarking
   - [x] Take/save picture
   - [x] Lists section avec navigation
