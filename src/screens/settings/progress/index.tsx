@@ -121,7 +121,7 @@ function generateURL({
     params.set("to", to.toISOString());
   }
   const url = new URL(window.location.href);
-  url.pathname = `${basename}settings/progress/${mode}`;
+  url.pathname = `${basename}/settings/progress/${mode}`;
   url.search = params.toString();
   return url.toString();
 }
