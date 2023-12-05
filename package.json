@@ -16,6 +16,7 @@
     "@tanstack/react-virtual": "^3.0.0-beta.68",
     "@zip.js/zip.js": "^2.7.30",
     "classnames": "^2.3.2",
+    "date-fns": "^2.30.0",
     "immer": "^10.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
