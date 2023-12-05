@@ -12,7 +12,7 @@ export function CreateWorkshop() {
   return (
     <PageContainer
       header={
-        <PageTitle backLink="/settings/workshop">Ajouter un enfant</PageTitle>
+        <PageTitle backLink="/settings/workshops">Ajouter un enfant</PageTitle>
       }
     >
       <WorkshopForm
