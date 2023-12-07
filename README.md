@@ -73,6 +73,7 @@ Quelques détails sur la pile technique :
       - [x] Kids/Workshops CRUD
       - [x] Kids/Workshop status table
       - [x] Kids progress page w/ print view
+      - [ ] Add ability to crop photos (react-easy-crop)
   - [x] Bookmarking
   - [x] Take/save picture
   - [x] Lists section avec navigation
