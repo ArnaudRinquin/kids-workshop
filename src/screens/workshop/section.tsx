@@ -2,6 +2,7 @@ import { Card } from "@/components/Card";
 import { CardGrid } from "@/components/CardGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { KidsCard } from "@/components/kids/Card";
+import { BookmarkButton } from "@/components/progress/BookmarkButton";
 import { ProgressCardContent } from "@/components/progress/CardContent";
 import { Kid, Workshop } from "@/types";
 import React from "react";
@@ -29,7 +30,13 @@ export function WorkshopKidsSection(props: WorkshopKidsSectionProps) {
       <SectionTitle id={props.id}>{props.title}</SectionTitle>
       <CardGrid>
         {kids.map((kid) => (
-          <KidsCard key={kid.id} {...kid}>
+          <KidsCard
+            key={kid.id}
+            {...kid}
+            titleControl={
+              <BookmarkButton kidId={kid.id} workshopId={props.workshop.id} />
+            }
+          >
             <ProgressCardContent
               key={kid.id}
               workshop={props.workshop}
