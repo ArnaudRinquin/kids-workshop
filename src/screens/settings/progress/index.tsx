@@ -15,6 +15,7 @@ import { type OptionId } from "./types";
 export function Progress() {
   const kids = useKids();
   const [selectedKid, setSelectedKid] = useState<Maybe<Kid>>(null);
+  const [includePercentages, setIncludePercentages] = useState<boolean>(false);
   const options: {
     id: OptionId;
     label: string;
@@ -56,6 +57,14 @@ export function Progress() {
           />
           <DateWithLabel label="Depuis le" value={from} onChange={setFrom} />
           <DateWithLabel label="Jusqu'au" value={to} onChange={setTo} />
+          <label>
+            Inclure les pourcentages de progression
+            <input
+              type="checkbox"
+              checked={includePercentages}
+              onChange={() => setIncludePercentages(!includePercentages)}
+            />
+          </label>
           <Button
             disabled={mode === "kid" && !selectedKid}
             onClick={() => {
@@ -65,6 +74,7 @@ export function Progress() {
                   from,
                   to,
                   kidId: selectedKid?.id,
+                  includePercentages,
                 }),
                 "_blank"
               );
@@ -104,11 +114,13 @@ function generateURL({
   from,
   to,
   kidId,
+  includePercentages,
 }: {
   mode: OptionId;
   from: Maybe<Date>;
   to: Maybe<Date>;
   kidId: Maybe<string>;
+  includePercentages: boolean;
 }) {
   const params = new URLSearchParams();
   if (mode === "kid") {
@@ -119,6 +131,9 @@ function generateURL({
   }
   if (to) {
     params.set("to", to.toISOString());
+  }
+  if (includePercentages) {
+    params.set("includePercentages", "true");
   }
   const url = new URL(window.location.href);
   url.pathname = `${basename}/settings/progress/${mode}`;
